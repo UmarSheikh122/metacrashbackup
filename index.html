@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/fonts/poppins-font.css">
+    <link rel="stylesheet" href="assets/fonts/robotoslab-font.css">
+    <!-- links -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/scss/screen.css">
+    <script src="https://kit.fontawesome.com/b0c951d718.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="navbar-main" class="fixed-top banner-sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <a class="navbar-brand" href="#"> </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav align-items-center">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#banner">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">games</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Support</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">promotions</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">info</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link Login btn first" href="#popup-login">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link signup btn first" href="#popup-signup">signup</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <!-- Login -->
+    <div id="popup-login" class="overlay-login">
+        <div class="popup"> 
+                <a class="close popup-close" href="#">×</a>
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-md-6">
+                        <h2>WELCOME TO
+                            PROPERSIX CASINO</h2>
+                    </div>
+                    <div class="col-md-6 outer-holder">
+                        <form id="frm_subscribe" class="form-user-login">
+                            <input type="hidden" name="_token" value="">                           
+                            <div class="row form-group">
+                                <div class="col-md-12 login-social-text">
+                                    <label>Login With</label>
+                                </div>
+                                <div class="col-md-12 login-icons">
+                                    <div class="social-form-div">
+                                        <a href=""><i class="fab fa-facebook-f"></i>Facebook</a>
+                                        <a href=""><i class="fab fa-twitter"></i>Twitter</a>
+                                    </div>
+                                    <div class="social-form-div">
+                                        <a href=""><i class="fab fa-google"></i>Gmail</a>
+                                        <a href="javascript:void(0)">
+                                            <i class="fab fa-telegram"></i>Telegram</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="or-line"><span>OR</span></div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address*" name="email" value="" required="" autofocus="">
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="pass" placeholder="Password*" name="password" value="" required="">
+                                <!-- //<i id="view-pass" class="fas fa-eye" onclick="myFunctiona()"></i> -->
+                            </div>
+
+
+                            <div class="login-check row">
+                                <div class="col-md-6 col-xs-12 d-flex align-items-center">
+                                    <input type="checkbox" id="remember_pass">
+                                    <label for="remember_pass">Remember me</label>
+                                </div>
+                                <div class="col-md-6 col-xs-12 forgot-pass-outer">
+                                    <div class="forgot-pass"><a href="#">Forgot your password?</a></div>
+                                </div>
+                            </div>
+
+                            <div class="signup-btn-box">
+                                <button type="button" id="signupBtn" class="btn first w-100">Login</button>
+                            </div>
+                            <div class="new-player">
+                                <p>New player click <a href="#popup-signup">here</a> to register</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login End -->
+
+    <!-- Signup -->
+    <div id="popup-signup" class="overlay-login">
+        <div class="popup"> 
+                <a class="close popup-close" href="#">×</a>
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-md-5">
+                        <h2>WELCOME TO PROPERSIX CASINO</h2>
+                    </div>
+                    <div class="col-md-7 outer-holder">
+                        <form id="frm_subscribe" class="form-user-login">
+                            <input type="hidden" name="_token" value="">                           
+                            <div class="row form-group">
+                                <div class="col-md-12 login-social-text">
+                                    <label>CREATE YOUR ACCOUNT</label>
+                                </div>
+                                <div class="col-md-12 login-icons">
+                                    <div class="social-form-div">
+                                        <a href=""><i class="fab fa-facebook-f"></i>Facebook</a>
+                                        <a href=""><i class="fab fa-twitter"></i>Twitter</a>
+                                    </div>
+                                    <div class="social-form-div">
+                                        <a href=""><i class="fab fa-google"></i>Gmail</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="or-line"><span>OR</span></div>
+                            <div class="form-floating">
+                                <input type="input" class="form-control" id="username" placeholder="Username*" name="username" value="" required="" autofocus="">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address*" name="email" value="" required="" autofocus="">
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="pass" placeholder="Password*" name="password" value="" required="">
+                                <input type="password" class="form-control" id="con-pass" placeholder="Confirm Password*" name="confirm-password" value="" required="">
+                                <!-- //<i id="view-pass" class="fas fa-eye" onclick="myFunctiona()"></i> -->
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="phone-nmbr" placeholder="Phone Number" name="phoneField1" value="">
+                                <input type="text" class="form-control" id="pro_child" placeholder="Referral Code" name="pro_child" value="">
+                            </div>
+
+
+                            <div class="login-check row flex-column">
+                                <div class="d-flex align-items-center mb-10">
+                                    <input type="checkbox" id="" name="bonus_offer" checked="">
+                                    <label>Sign up for our Newsletter</label>
+                                </div>
+                                <div class=" forgot-pass-outer">
+                                    <div class="forgot-pass">
+                                        <input type="checkbox" id=" " name=" " required="" checked="">
+                                        <label >Agree to our<a href="#">&nbsp;terms and conditions</a></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="signup-btn-box">
+                                <button type="button" id="signupBtn" class="btn first w-100">Submit</button>
+                            </div>
+                            <div class="new-player">
+                                <p>New player click <a href="#popup-login">here</a> to register</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- signup-end -->
+
+    <!-- Header End -->
+
+    <!-- Hero -->
+    <section id="banner" class="hero d-flex align-items-center justify-content-start" style="background-image:url(assets/images/dice_wall_paper.jpg)">
+        <div class="col-md-5 text-center">
+            <div class="--content">
+                <h3 class="">Signup Now and get 50 spins free</h3>
+                <a class="btn first" href=""> Join NOw </a>
+            </div>
+        </div>
+    </section>
+    <!-- Hero End -->
+
+
+    <!-- jQuery -->
+    <script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+</body>
+</html>

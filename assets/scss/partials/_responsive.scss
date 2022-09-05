@@ -1,0 +1,305 @@
+// Variables
+@import "variables";
+@import "fonts";
+
+// Main Responsive Stylesheet
+@media only screen and (min-width: 1440px) {
+   
+
+}
+
+
+
+// lg min
+@media only screen and (min-width: 1200px) {
+  
+}
+
+// below desktop
+@media only screen and (max-width: 1100px) {
+
+}
+
+
+@media only screen and (max-width: 1199px) {
+
+}
+// tabes
+@media  (max-width: 1024px) {
+  html{
+      font-size: 8px;
+  }
+  .cursor{
+    display: none;
+  }
+  .cursor-follower{
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+
+  /* end max-1024px */
+}
+
+// tabes
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   
+
+  /* end min768 max-991px */
+}
+
+@media only screen and (min-width: 992px) {
+  
+
+
+  /* end min-1200px */
+}
+
+// ipad
+@media only screen and (max-width: 991px) {
+  html{
+    font-size: 6px;
+    body{
+      p{
+        font-size: 14px;
+        line-height: 24px;
+      }
+      h2{
+        line-height: 1.5;
+      }
+      a{
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
+
+
+  .editions_supply{
+    .cards-section{
+      margin-top: 30rem;
+      .editon-card{
+        img.card-icon {
+          position: absolute;
+          top: -86%;
+          left: 0;
+      }
+      }
+    }
+  }
+
+  .all-in {
+    .cards-section{
+      .card-start {
+        padding: 0 3rem;
+    }
+    }
+  }
+
+// header
+.site-header{
+  .navigation{
+    nav.navbar{
+      ul {
+        align-items: flex-start;
+        position: absolute;
+        top: 28px;
+        background: #fff;
+        padding: 1rem 2rem;
+        right: 0;
+        width: 50%;
+        li {
+          margin-right: 0;
+          border-bottom: 1px solid #e39b35;
+          width: 100%;
+          margin-bottom: 1rem;
+          &:last-child{
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+    button.navbar-toggler {
+      position: absolute;
+      top: -7px;
+  }
+  }
+}
+
+.community_together{
+  &::before{
+      width: 25rem;
+      height: 17rem;
+  }
+  &::after{
+    width: 40rem;
+    height: 18rem;
+} 
+}
+
+}
+
+// Mobile
+@media only screen and (max-width: 767px) {
+
+  html{
+    font-size: 7px;
+    body{
+      p{
+        font-size: 16px;
+        line-height: 24px;
+      }
+      h2{
+        line-height: 1.5;
+      }
+      a{
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+  
+  .editions_supply{
+    .cards-section{
+      margin-top: 15rem;
+    }
+  }
+  .how_it_works {
+    #light{
+      width: 100%;
+    }
+    .boxclose { 
+      padding: 0.5rem 1.5rem;
+      top: 2px;
+      left: 5px;
+  }
+  }
+
+// header
+.site-header{
+  .navigation{
+    nav.navbar{
+      ul {
+        top: 14px;
+      }
+    }
+    button.navbar-toggler {
+      position: absolute;
+      top: -20px;
+  }
+  }
+}
+
+
+  .editions_supply{
+    .cards-section{
+      .editon-start{
+        margin-bottom: 25rem;
+        &:first-child{
+          margin-top: 10rem;
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+        .editon-card {
+          img.card-icon {
+            top: -75%;
+        }
+        }
+    }
+    }
+  }
+
+  .roadmap{
+    .allin-content {
+      h1 {
+        font-size: 6rem;
+    }
+    }
+  }
+
+  .all-in {
+    .cards-section{
+      .card-start {
+        padding: 0;
+        border: unset;
+        margin-bottom: 3rem;
+    }
+    }
+  }
+// all-in
+.all-in{
+  position: relative;
+  &::before{
+     display: none;
+  }
+  &::after{
+display: none;
+  }
+}
+.community_together{
+  &::before{
+   display: none;
+  }
+  &::after{
+    display: none;
+   }
+}
+.cta{
+  &::before{
+   display: none;
+  }
+  &::after{
+    display: none;
+   }
+}
+.allin-content {
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.site-footer{
+  .footer-1{
+    margin-bottom: 2rem;
+      div{
+          justify-content: start;
+          a{
+            padding-right: 2rem;
+            padding-left: 0;
+          }
+      }
+      p{
+          text-align: left;
+          margin: 0;
+      }
+  }
+}
+  // editions_&_supply
+.editions_supply{
+  .cards-section{
+      .editon-card{
+          .dropdown-menu {
+              max-width: 24rem;
+              .show{
+                left: -50%;
+              }
+          }
+      }
+  }
+}
+.all-in{
+  .all-in-title {
+    border-right: none;
+  }
+} 
+
+
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px){
+   
+}
+
+@media only screen and (max-width: 360px){
+   
+}
