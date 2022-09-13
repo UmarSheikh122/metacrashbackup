@@ -1,0 +1,365 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <!-- Fonts -->
+        <link rel="stylesheet" href="assets/fonts/poppins-font.css">
+        <link rel="stylesheet" href="assets/fonts/robotoslab-font.css">
+        <!-- links -->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/css/">
+        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/scss/screen.css">
+        <script src="https://kit.fontawesome.com/b0c951d718.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="navbar-main" class=" banner-sticky-top">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo.png" alt="Logo" class="img-fluid">
+                    </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav align-items-lg-center">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#banner">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#games">games</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Support</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#top_winners">promotions</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">info</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link Login btn first" href="#popup-login">Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link signup btn first" href="#popup-signup">signup</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+        </header>
+        <!-- Login -->
+    <div id="popup-login" class="overlay-login">
+        <div class="popup"> 
+                <a class="close popup-close" href="#">×</a>
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-md-6">
+                        <h2>WELCOME TO
+                            PROPERSIX CASINO</h2>
+                    </div>
+                    <div class="col-md-6 outer-holder">
+                        <form id="frm_subscribe" class="form-user-login">
+                            <input type="hidden" name="_token" value="">                           
+                            <div class="row form-group">
+                                <div class="col-md-12 login-social-text">
+                                    <label>Login With</label>
+                                </div>
+                                <div class="col-md-12 login-icons">
+                                    <div class="social-form-div">
+                                        <a class="btn second" href=""><i class="fab fa-facebook-f"></i>Facebook</a>
+                                        <a class="btn second" href=""><i class="fab fa-twitter"></i>Twitter</a>
+                                    </div>
+                                    <div class="social-form-div">
+                                        <a class="btn second" href=""><i class="fab fa-google"></i>Gmail</a>
+                                        <a class="btn second" href="javascript:void(0)">
+                                            <i class="fab fa-telegram"></i>Telegram</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="or-line"><span>OR</span></div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address*" name="email" value="" required="" autofocus="">
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="pass" placeholder="Password*" name="password" value="" required="">
+                                <!-- //<i id="view-pass" class="fas fa-eye" onclick="myFunctiona()"></i> -->
+                            </div>
+
+
+                            <div class="login-check row">
+                                <div class="col-md-6 col-xs-12 d-flex align-items-center">
+                                    <input type="checkbox" id="remember_pass">
+                                    <label for="remember_pass">Remember me</label>
+                                </div>
+                                <div class="col-md-6 col-xs-12 forgot-pass-outer">
+                                    <div class="forgot-pass"><a href="#">Forgot your password?</a></div>
+                                </div>
+                            </div>
+
+                            <div class="signup-btn-box">
+                                <button type="button" id="signupBtn" class="btn first w-100">Login</button>
+                            </div>
+                            <div class="new-player">
+                                <p>New player click <a href="#popup-signup">here</a> to register</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login End -->
+
+    <!-- Signup -->
+    <div id="popup-signup" class="overlay-login">
+        <div class="popup"> 
+                <a class="close popup-close" href="#">×</a>
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-md-5">
+                        <h2>WELCOME TO PROPERSIX CASINO</h2>
+                    </div>
+                    <div class="col-md-7 outer-holder">
+                        <form id="frm_subscribe" class="form-user-login">
+                            <input type="hidden" name="_token" value="">                           
+                            <div class="row form-group">
+                                <div class="col-md-12 login-social-text">
+                                    <label>CREATE YOUR ACCOUNT</label>
+                                </div>
+                                <div class="col-md-12 login-icons">
+                                    <div class="social-form-div">
+                                        <a class="btn second" href=""><i class="fab fa-facebook-f"></i>Facebook</a>
+                                        <a class="btn second" href=""><i class="fab fa-twitter"></i>Twitter</a>
+                                    </div>
+                                    <div class="social-form-div">
+                                        <a class="btn second" href=""><i class="fab fa-google"></i>Gmail</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="or-line"><span>OR</span></div>
+                            <div class="form-floating">
+                                <input type="input" class="form-control" id="username" placeholder="Username*" name="username" value="" required="" autofocus="">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address*" name="email" value="" required="" autofocus="">
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="pass" placeholder="Password*" name="password" value="" required="">
+                                <input type="password" class="form-control" id="con-pass" placeholder="Confirm Password*" name="confirm-password" value="" required="">
+                                <!-- //<i id="view-pass" class="fas fa-eye" onclick="myFunctiona()"></i> -->
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="phone-nmbr" placeholder="Phone Number" name="phoneField1" value="">
+                                <input type="text" class="form-control" id="pro_child" placeholder="Referral Code" name="pro_child" value="">
+                            </div>
+
+
+                            <div class="login-check row flex-column">
+                                <div class="d-flex align-items-center mb-10">
+                                    <input type="checkbox" id="" name="bonus_offer" checked="">
+                                    <label>Sign up for our Newsletter</label>
+                                </div>
+                                <div class=" forgot-pass-outer">
+                                    <div class="forgot-pass">
+                                        <input type="checkbox" id=" " name=" " required="" checked="">
+                                        <label >Agree to our<a href="#">&nbsp;terms and conditions</a></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="signup-btn-box">
+                                <button type="button" id="signupBtn" class="btn first w-100">Submit</button>
+                            </div>
+                            <div class="new-player">
+                                <p>New player click <a href="#popup-login">here</a> to register</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- signup-end -->
+
+        <!-- Header End -->
+
+        <!-- Dashboard -->
+<div class="all-wrapper section-gap section-gap-top-big">
+    <div class="container pt-150 pb-150 user_info">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="myaccount-imagebox">
+                            <img src="https://propersix.casino/user/profile/avatar_new.png" alt="pic" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="myaccount-imagebox-text">
+                            <p class="just-grd"><b>Happy</b></p>
+                            <p>TOKENS : <b class="just-grd" id="tokens">0</b></p>
+                            <p>FREE TOKENS : <b class="just-grd" id="free_tokens">0</b></p>
+                            <p>TOTAL TOKENS : <b class="just-grd" id="total_tokens">0</b></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="myaccount-imagebox-text">
+                            <p>USD : <b class="just-grd" id="usd">0</b></p>
+                            <p>VIP Points : <b class="just-grd" id="vip_points">0</b></p>
+                            <p>FREE SPIN : <b class="just-grd" id="free_spin">0</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- myaccount-tab-main -->
+    <section class="myaccount-tab-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class="left_tabs">
+                                <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                                    <button class="nav-link active" id="v-pills-missions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-missions" type="button" role="tab" aria-controls="v-pills-missions" aria-selected="true">
+                                        <img src="assets/images/mission.png" alt="pic" class="img-fluid mb-20" >
+                                        <p>Missions</p>
+                                    </button>
+
+                                    <button class="nav-link" id="v-pills-banking-tab" data-bs-toggle="pill" data-bs-target="#v-pills-banking" type="button" role="tab" aria-controls="v-pills-banking" aria-selected="false">
+                                        <img src="assets/images/Banking.png" alt="pic" class="img-fluid mb-20" >
+                                        <p>Banking</p>
+                                    </button>
+
+                                  </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="rigt_content">
+                                <div class="tab-content outer" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-missions" role="tabpanel" aria-labelledby="v-pills-missions-tab">
+                                    <p>No missions are currently available. Check back later!</p>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="v-pills-banking" role="tabpanel" aria-labelledby="v-pills-banking-tab">
+                                    <!-- Banking Content Nav -->
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                          <button class="nav-link btn second active" id="nav-deposit-tab" data-bs-toggle="tab" data-bs-target="#nav-deposit" type="button" role="tab" aria-controls="nav-deposit" aria-selected="true">Deposit</button>
+                                          <button class="nav-link btn second" id="nav-withdraw-tab" data-bs-toggle="tab" data-bs-target="#nav-withdraw" type="button" role="tab" aria-controls="nav-withdraw" aria-selected="true">withdraw</button>
+                                        </div>
+                                      </nav>
+                                    <!-- Banking Content nav End -->
+                                    <!-- nav tab Content -->
+                                    <div class="tab-content inner" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-deposit" role="tabpanel" aria-labelledby="nav-deposit-tab">
+                                            <nav>
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                  <button class="nav-link btn second active" id="nav-crpto-tab" data-bs-toggle="tab" data-bs-target="#nav-crpto" type="button" role="tab" aria-controls="nav-crpto" aria-selected="true">
+                                                    <img class="img-fluid" src="assets/images/ethereum.png" alt="">
+                                                  </button>
+                                                  <button class="nav-link btn second" id="nav-visa-tab" data-bs-toggle="tab" data-bs-target="#nav-visa" type="button" role="tab" aria-controls="nav-visa" aria-selected="true">
+                                                    <img class="img-fluid" src="assets/images/master_card2.png" alt="">
+                                                  </button>
+                                                </div>
+                                              </nav>
+                                              <div class="tab-content" id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="nav-crpto" role="tabpanel" aria-labelledby="nav-crpto-tab">
+                                                    <div class="deposite-form">
+                                                        <form action="" method="POST" id="">
+                                                            <input type="hidden" name="_token" value="">                                     
+                                                            <h3 class="mb-30 mt-30">Crypto Payment Information</h3>
+                                                            <input type="hidden" id="" value="50">
+                                                            <div class="row" hidden="">
+                                                                <div class="col-lg-5 ml-lg-auto">
+                                                                    <input type="text" class="form-control" name="first_name" value="First Name" placeholder="First Name">
+                                                                </div>
+                                                                <div class="col-lg-5 mr-lg-auto" hidden="">
+                                                                    <input type="text" name="last_name" value="Last Name" class="form-control" placeholder="Last Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-10 m-auto" hidden="">
+                                                                    <select name="" class="select-input form-control minimal">
+                                                                        <option value="usd">USD</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-floating">
+                                                                        <select id="coin_currency" name="coin_currency" class="select-input form-control minimal">
+                                                                            <option value="btc">BTC</option>
+                                                                            <option value="eth">ETH</option>
+                                                                            <option value="usdt">USDT</option>
+                                                                            <option value="lby">LBY</option>
+                                                                            <option value="psix">PSIX</option>
+                                                                        </select>
+                                                                        <label for="coin_currency" style="color: white;">Crypto Currency</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-floating">
+                                                                        <input type="number" id="" min="0" class="form-control" name="amount" placeholder="USD Amount">
+                                                                        <label for="" style="color: white;">USD Amount</label>
+                                                                    </div>
+                                                                    <label id=""></label>
+                                                                    <input type="hidden" class="form-control" id="" name="" readonly="" placeholder="">
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="form-floating">
+                                                                        <input type="text" class="form-control" id="bonus_code" name="bonus_code" placeholder="Bonus Code (if any)">
+                                                                        <label for="bonus_code" style="color: white;">Bonus Code (if any)</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-10 m-auto text-center btn second">
+                                                                    <button type="submit" class="btn">Deposit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade show" id="nav-visa" role="tabpanel" aria-labelledby="nav-visa-tab">
+                                                    visa Content
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <!-- Withdraw -->
+                                        <div class="tab-pane fade show" id="nav-withdraw" role="tabpanel" aria-labelledby="nav-withdraw-tab">
+                                             <p>withdraw</p>
+                                        </div>
+                                        <!-- Withdraw End -->
+                                      </div>
+                                    <!-- nav tab Content End -->
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+        <!-- Dashboard End -->
+
+
+        <!-- jQuery -->
+        <script src="assets/plugins/jQuery/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="assets/js/navigation.js"></script>
+        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        
+    </body>
+    </html>

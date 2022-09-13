@@ -8,15 +8,197 @@ section.hero{
     background-size: cover;
     position: relative;
     padding: 0;
-    min-height: 56.25vw;
+    min-height: 100vh;
     .--content {
         // background: #0009;
-        padding: 3rem;
+        // padding: 3rem;
         border-radius: 1rem;
         h3{
-            color: #fff;
-            font-size: 5.4rem;
+            text-transform: uppercase;
+            text-shadow: 0px 10px 2px #ffcc5a57;
+            text-align: center;
+  
+            // background: linear-gradient(to right, #eea32c 20%, #6B41F3 40%, #eea32c 60%, #6B41F3 80%);
+            // background-size: 200% auto;
+            // color: #000;
+            // background-clip: text;
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+            // animation: shine 5s linear infinite;
+            font-weight: 900;
+            font-size: 7rem;
+        }
+    }
+}
+@keyframes shine { 
+    to {
+      background-position: 200% center;
+    }
+  }
+.signup{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .--content{
+        p, h4{
+            color: $orange;
+        }
+        h4{
+            font-weight: 700;
             margin-bottom: 3rem;
+        }
+    }
+    .--img{
+        img{
+            max-width: 50rem;
+        }
+    }
+}
+
+.games{
+    .game-header{
+        h3{
+            text-shadow: 2px 2px 5px #3506ce;
+            font-weight: 700;
+            font-size: 4rem;
+        }
+    }
+        .game_gallery{
+            .game_card {
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 3rem;
+                img.gameimage{
+                    transition: all 0.5s;
+                    //transform: scale(1.1);
+                    max-width: 22rem;
+                    height: fit-content;
+                    object-fit: cover;
+                    border-radius: 1rem;
+                }
+                // &:hover  img.gameimage {
+                //     //transform: scale(1.2);
+                // }
+                &:hover .card-body {
+                    bottom: 2rem;
+                }
+                .card-body {
+                    position: absolute;
+                    left: 0;
+                    bottom: -50%;
+                    width: 100%;
+                    transition: all 0.5s;
+                }
+                .favourit {
+                    position: absolute;
+                    top: 28px;
+                    right: 9px;
+                    text-align: center;
+                    transition: all 0.3s ease-in-out;
+                    z-index: 10;
+                    a{
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 30px;
+                        display: block;
+                        background: linear-gradient(to bottom, #fff5c2 0%, #e2a336 50%, #e2a336 50%, #fff5c2 100%);
+                        transition: all 0.3s ease-in-out;
+                        i {
+                            line-height: 26px;
+                            color: #de0000;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                }
+            }
+    }
+}
+
+// top_winners
+.top_winners{
+    .--content{
+        h3{
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            // background: -webkit-radial-gradient(center, ellipse cover, #ffee97 10%, #CA6E05 86%, #CA6E05 100%);
+            // // -webkit-background-clip: text;
+            // -webkit-text-fill-color: #0000;
+            padding-bottom: 35px;
+        }
+        .all-table {
+            width: 70%;
+            margin: 0 auto;
+            tbody{
+                tr{
+                    td {
+                        font-size: 16px;
+                        text-align: center;
+                        padding: 15px 10px;
+                        border-bottom: 1px outset #c09233;
+                    }
+                    &:first-child td {
+                        border: 1px outset #c09233;
+                    }
+                }
+            }
+        }
+    }
+    .--img{
+        img{
+            max-width: 45rem;
+        }
+    }
+}
+
+.exclusive{
+    .exclusive_tabs{
+        h3{
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .tab-content{
+            .tab-pane{
+                .accordion{
+                    .accordion-item{
+                        background: #0000;
+                        border: none;
+                        .accordion-button {
+                            background: #0000;
+                            color: $orange;
+                            font-size: 1.6rem;
+                            padding: 0;
+                            padding-bottom: 1rem;
+                            &::after{
+                                display: none;
+                            }
+                            &:focus{
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+                        .accordion-collapse{
+                            .accordion-body{
+                                font-size: 1.6rem;
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+                // ul{
+                //     padding: 0;
+                //     li{
+                //         list-style: none;
+                //     }
+                // }
+            }
+        }
+    }
+    .--content{
+        h3{
+            font-weight: 700;
+            text-transform: uppercase;
         }
     }
 }
@@ -37,7 +219,7 @@ section.hero{
         justify-content: center;
         border: 2px solid #e2a236;
         background: linear-gradient(92deg, #da8717 -10%, #000 50%);
-        margin: auto; 
+        //margin: auto; 
         padding: 15px 5px;
         border-radius: 0px;
         height: max-content; 
@@ -67,10 +249,11 @@ section.hero{
                             justify-content: space-between;
                             margin-bottom: 1rem;
                             a{
-                                color: $white;
-                                background: #a56612;
-                                padding: 1rem 2rem;
+                                // color: $white;
+                                // background: #a56612;
+                                // padding: 1rem 2rem;
                                 border-radius: 10px;
+                                margin-bottom: 2rem;
                                 i {
                                     padding-right: 1rem;
                                 }
