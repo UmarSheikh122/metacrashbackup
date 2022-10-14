@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://ec2-103-4-14-209.ap-northeast-1.compute.amazonaws.com:5000";
+const API_URL = process.env.REACT_APP_API_URL;
 let token = localStorage.getItem("token");
 const getPoints = async () => {
   let result = await axios.get(`${API_URL}/gamepoint/getpoints`, {

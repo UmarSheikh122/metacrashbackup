@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://ec2-103-4-14-209.ap-northeast-1.compute.amazonaws.com:5000";
+const API_URL = process.env.REACT_APP_API_URL;
 
 // Register user
 const login = async (userData) => {

@@ -9,6 +9,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import LandingPage from "./pages/landing-page/LandingPage";
 import GamePage from "./pages/game/GamePage";
 import GameCrashPage from "./pages/gameCrash/GameCrashPage"
+import { RequireAuth } from "./pages/protectedroute/RequireAuth";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
       <Header />
       <Routes>
         <Route index path="/" element={< GameCrashPage/>} />
-        <Route  path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard/>
+            </RequireAuth>
+          }
+        />
         <Route path="/game" element={<GamePage/>}/>
         // <Route path="/gamecrash" element={<LandingPage/>}/>
       </Routes>
