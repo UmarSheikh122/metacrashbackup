@@ -1,0 +1,28 @@
+// Variables
+@import "variables";
+
+.gamePlay{
+    .gameScreen{
+        width: 100%;
+        .DemoPlay{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% , -50%);
+            cursor: pointer;
+            button{
+                background-color: unset;
+                border: 0;
+                &.demo {
+                    font-size: 5rem;
+                    font-weight: 700;
+                    background: linear-gradient(248deg, #FDE254 1.52%, #EF5A20 98.48%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: #0000;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,143 @@
+// Main Animations
+// Variables
+@import "variables";
+
+header{
+    padding: 1rem 4rem;
+    filter: drop-shadow(0px 4px 49px rgba(0, 7, 72, 0.12));
+    backdrop-filter: blur(12.5px);
+    background: linear-gradient(155.14deg, #fff0 -2.13%, #ffffff26 136.58%);
+    
+    .logo{
+        display: flex;
+        align-items: center;
+        gap: 6rem;
+        img{
+            width: 100%;
+        }
+    }
+    .search{
+            input{
+                background: linear-gradient(155.14deg, #fff0 -2.13%, #ffffff40 136.58%);
+                border: 1px solid #ffffff26;
+                border-radius: 8px;
+                padding: 1.6rem 4rem;
+                font-size: 1.6rem;
+            }
+    }
+    .nav{
+        a{
+            font-weight: 500;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-left: 4rem;
+            &.menu-btn{
+                padding: 1.4rem 6.2rem;
+                font-size: 16px;
+                line-height: 20px;
+                letter-spacing: 0.05em;
+                color: $white;
+                border-radius: 10.1rem;
+            }
+        }
+        .user_icon{
+            justify-content: end;
+            flex: 0 0 35%;
+            .user {
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                img{
+                    width: 6rem;
+                    height: auto;
+                }
+                h4{
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    letter-spacing: 0.05em;
+                    font-family: 'orbitron';
+                    margin-bottom: 0;
+                    margin-right: 0.8rem;
+                    text-transform: capitalize;
+                }
+            }
+        }
+        
+        .dropdown{
+            a{
+                text-decoration: none;
+                margin-left:0rem;
+            }
+            .dropdown-menu {
+                background: linear-gradient(90.11deg, #A95EF5 -10.48%, #7808EA 44.11%);
+                transform: translate(0px, 45px) !important;
+                .show {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 20rem;
+                }
+                .dropdown-item{
+                    margin: 0;
+                    padding: 1rem;
+                    text-align: center;
+                    border-bottom: 1px solid #fff;
+                    &:last-child{
+                        border: none;
+                    }
+                    &:hover{
+                        background: transparent;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+
+// Media
+@media(max-width: 991px){
+    header .nav a {
+        margin-left: 4px;
+    }
+}
+
+
+@media(max-width: 767px){
+    header {
+    .nav a {
+        font-weight: 500;
+        font-size: 1.6rem;
+        color: #fff;
+        margin-left: 0;
+    }
+    .logo {
+        margin-bottom: 2rem;
+    }
+}
+
+header {
+    padding: 1rem 2rem;
+    .justify-content-end{
+        justify-content: center !important;
+    }
+    .menu-btn{
+        margin-top: 2rem;
+    }
+}
+
+.playicon{
+    img{
+        max-width: 5rem;
+    }
+}
+body .login_modal .modal-dialog {
+    transform: translate(0, 0%) !important;
+}
+
+body .GamePoints .user img {
+    top: -11rem;
+    max-width: 10rem;
+}
+}

@@ -1,0 +1,42 @@
+// Main Animations
+// Variables
+@import "variables";
+
+.recentwins{
+    .RecentWinnerListing{
+        .listing{
+            .wiiners{
+                background-color: $black;
+                border-radius: 0.7rem;
+                padding: 1rem 1.6rem;
+                margin-top: 2rem;
+                .winnerName{
+                    h6{
+                        font-weight: 500;
+                        font-size: 1.8rem;
+                        margin: 0;
+                        line-height: 2.7rem;
+                    }
+                    p{
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                        color: rgba(255, 255, 255, 0.6);
+                        margin: 0;
+                    }
+                }
+                .price{
+                    h5{
+                        background: linear-gradient(181.8deg, #FDE254 1.52%, #EF5A20 98.48%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        text-fill-color: transparent;
+                        font-size: 2rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        
+    }
+}

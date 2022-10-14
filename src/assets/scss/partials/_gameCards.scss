@@ -1,0 +1,42 @@
+// Main Animations
+// Variables
+@import "variables";
+
+.recentwins{
+    .gameCards{
+       .card{
+            background: linear-gradient(155.14deg, rgba(255, 255, 255, 0) -2.13%, rgba(255, 255, 255, 0.15) 136.58%);
+            filter: drop-shadow(0px 4px 49px rgba(0, 7, 72, 0.12));
+            backdrop-filter: blur(12.5px);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1.5px solid #FFFFFF4D;
+            max-width: 23.5rem;
+            margin: auto;
+            &:hover{
+                filter: drop-shadow(0px 15px 25px rgba(120, 8, 234, 0.2));
+                p{
+                    color: $purple;
+                }
+            }
+            img{
+                border-radius: 1rem;
+            }
+            h5{
+                font-family: 'Orbitron';
+                font-weight: 700;
+                font-size: 1.6rem;
+                margin-bottom: 0.8rem;
+            }
+            p{
+                font-weight: 700;
+                font-size: 1.6rem;
+                margin: 0;
+            }
+            .btn .menu-btn{
+                display: inline-block;
+                padding: 1rem 7.5rem;
+            }
+       }
+    }
+}
