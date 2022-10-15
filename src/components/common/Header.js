@@ -76,7 +76,7 @@ let token=localStorage.getItem("token")
                   <div className="user_icon d-flex align-items-center"> 
                   {/* <button  onClick={logoutUser}>Logout</button> */}
                   
-                  <User />
+                  <User header="header"/>
                   <NavDropdown title="" id="basic-nav-dropdown">
                     <NavDropdown.Item ><Link to="/dashboard">Dashboard</Link> </NavDropdown.Item>
                     <NavDropdown.Item  onClick={logoutUser}>Logout</NavDropdown.Item>

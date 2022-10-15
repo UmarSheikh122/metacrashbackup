@@ -5,10 +5,11 @@ const API_URL = process.env.REACT_APP_API_URL;
 // Register user
 const login = async (userData) => {
   const response = await axios.post(`${API_URL}/user/signin`, userData);
+  console.log("response--------------------",response)
   if (response.status === 200) {
     localStorage.setItem("token", response.data.token);
   }
-console.log('response', response)
+// console.log('response', response)
   return response.data;
 };
 

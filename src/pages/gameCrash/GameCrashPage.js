@@ -12,9 +12,10 @@ import CrashGame from "../../components/crashGame/CrashGame";
 const GameCrashPage = () => {
   const [openGame,setOpenGame]=useState(false)
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token")
   
-  const gamePlayHandler = (playGame) => {
+  const gamePlayHandler = (playGame) => { 
+  const token = localStorage.getItem("token")
+    
     if(token){
       dispatch(gamePlayMode(playGame)).unwrap()
       .then(() => {

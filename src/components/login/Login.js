@@ -40,7 +40,7 @@ function Login({ open, setOpen, SignupShow, message }) {
       dispatch(loginUser(values))
         .unwrap()
         .then(() => {
-          navigate("/dashboard");
+          navigate("/");
           formik.resetForm();
           loginClose();
         }).catch((err)=>{
