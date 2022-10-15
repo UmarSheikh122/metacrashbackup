@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import mobile_coins from "../../assets/images/mobile_coins.svg";
 import { useFormik } from "formik";
@@ -9,6 +8,7 @@ import {
 } from "../../features/userAuth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { verificationValidation } from "../../helpers/Validation";
+import { notifySuccess } from "../common/Toast";
 
 function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
   const [message, setMessage] = useState("");
@@ -16,14 +16,15 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
   const verifyClose = () => setOpenVerifyModal(false);
   const dispatch = useDispatch();
 
-  const email = localStorage.getItem("email");
+  // const email = localStorage.getItem("email");
   const formik = useFormik({
     initialValues: {
-      email: email,
+      email: localStorage.getItem('email'),
       verificationCode: "",
     },
     validationSchema: verificationValidation,
     onSubmit: (values) => {
+      values.email = localStorage.getItem('email')
       dispatch(verifyUser(values))
         .unwrap()
         .then(() => {
@@ -31,6 +32,7 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
           verifyClose();
           localStorage.removeItem("email")
           setMessage("Email successfully verified");
+          notifySuccess('Email successfully verified')
         })
         .catch((err) => {
           console.log("err", err);
@@ -63,7 +65,7 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
                 <h4 className="mb-30">Verify you email</h4>
                 <form onSubmit={formik.handleSubmit}>
                   <div class="form-group">
-                    <input
+                    {/* <input
                       class="form-control"
                       type="email"
                       placeholder="Enter email"
@@ -71,7 +73,7 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
                       aria-label=""
                       value={formik.values.email}
                       readOnly
-                    />
+                    /> */}
                     <input
                       className="form-control"
                       type="number"

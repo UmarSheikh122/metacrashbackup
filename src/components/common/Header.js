@@ -69,7 +69,7 @@ let token=localStorage.getItem("token")
                       className="btn menu-btn"
                       onClick={SignupShow}
                     >
-                      Sign In{" "}
+                      Sign Up{" "}
                     </Nav.Link>
                   </>
                 ) : (
