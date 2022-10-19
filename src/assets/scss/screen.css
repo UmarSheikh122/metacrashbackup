@@ -1182,6 +1182,12 @@ footer .copyright p {
   color: #fff;
 }
 
+.canvas#unity-canvas-2 {
+  width: 960px !important;
+  height: 540px !important;
+  margin: auto;
+}
+
 .gamePlay .gameScreen {
   width: 100%;
 }
@@ -1204,4 +1210,10 @@ footer .copyright p {
   -webkit-text-fill-color: rgba(0, 0, 0, 0);
   background-clip: text;
   text-fill-color: transparent;
+}
+
+.gamePlay {
+  width: 960px !important;
+  height: 540px !important;
+  margin: auto;
 }/*# sourceMappingURL=screen.css.map */

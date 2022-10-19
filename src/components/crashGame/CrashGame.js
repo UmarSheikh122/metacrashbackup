@@ -9,14 +9,16 @@ const CrashGame = () => {
   });
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12 ">
+    <div className="container" >
+      <div className="row justify-content-center align-items-center">
+        <div className="col-md-9 ">
             
           <Unity
             unityContext={unityContext}
             style={{
-              width: "100%",
+              
+              height:"540px",
+              width: "960px",
               justifySelf: "center",
               alignSelf: "center",
               marginTop:"50px"
