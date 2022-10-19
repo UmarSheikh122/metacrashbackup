@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap.js";
 
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/common/Header";
-import Footer from "./components/common/Footer";
+// import Footer from "./components/common/Footer";
 import Dashboard from "./pages/dashboard/Dashboard";
 import LandingPage from "./pages/landing-page/LandingPage";
 import GamePage from "./pages/game/GamePage";
@@ -29,7 +29,7 @@ function App() {
         // <Route path="/gamecrash" element={<LandingPage/>}/>
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
