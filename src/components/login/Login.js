@@ -134,16 +134,16 @@ function Login({ open, setOpen, SignupShow, message }) {
                 <div className="form_text d-flex pt-20 align-items-center">
                   <p className="m-0">Don’t have an account ?</p>
                   {/* <Link>About</Link> */}
-                  <button onClick={SignupShow}>Signup</button>
+                  <button onClick={SignupShow}>Register</button>
                 </div>
                 {/* <div className='or_text d-flex pt-20 align-items-center'>
                   <hr />
                   <p>or</p>
                   <hr />
                 </div> */}
-                <div>
+                {/* <div>
                   <img className="img-fluid mt-20" src={google} alt="" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
