@@ -9,31 +9,31 @@ import { gamePlayMode } from "../../features/game/gameSlice";
 import Toast, { notfiFail } from "../../components/common/Toast";
 import CrashGame from "../../components/crashGame/CrashGame";
 
-const GameCrashPage = () => {
+const GameCrashPage = ({game,setGame}) => {
   const [openGame,setOpenGame]=useState(false)
   const dispatch = useDispatch();
   
   const gamePlayHandler = (playGame) => { 
   const token = localStorage.getItem("token")
-    
-    if(token){
+    setGame(true)
+    // if(token){
       dispatch(gamePlayMode(playGame)).unwrap()
       .then(() => {
-     setOpenGame(true)
+     setGame(true)
       }).catch((err)=>{
         console.log('err', err)
         notfiFail("Error try again later!")
-        setOpenGame(false)
+        setGame(true)
       })
-    }
-    else{
-      notfiFail("Please Login")
-    }
+    // }
+    // else{
+    //   notfiFail("Please Login")
+    // }
   };
   return (
     <>
     {
-      openGame  ? (
+      game  ? (
         <>
         <CrashGame/>
         </>

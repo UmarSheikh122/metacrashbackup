@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { signUpValidation } from "../../helpers/Validation";
 import { useFormik } from "formik";
-import VerifyUserModal from "../verify-user/VerifyUserModal";
+// import VerifyUserModal from "../verify-user/VerifyUserModal";
 
 function Signup({ Signupopen, setSignup, loginShow }) {
   const { loading } = useSelector(userAuthSelector);
@@ -43,10 +43,11 @@ function Signup({ Signupopen, setSignup, loginShow }) {
         dispatch(registerUser(values))
           .unwrap()
           .then(() => {
-            VerifyModal();
+            // VerifyModal();
             setSignUpError("");
             formik.resetForm();
             setDobError("");
+            setSignup(false);
           })
           .catch((err) => {
             setSignUpError(err);
@@ -263,11 +264,11 @@ function Signup({ Signupopen, setSignup, loginShow }) {
         </div>
       </Modal>
 
-      <VerifyUserModal
+      {/* <VerifyUserModal
         openVerifyModal={openVerifyModal}
         setOpenVerifyModal={setOpenVerifyModal}
         loginShow={loginShow}
-      />
+      /> */}
     </>
   );
 }

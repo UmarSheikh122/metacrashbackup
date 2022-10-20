@@ -10,7 +10,7 @@ import { logout } from "../../features/userAuth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import User from "../dashboard/game-points/User";
 
-export const Header = () => {
+export const Header = ({game,setGame}) => {
   const navigate = useNavigate();
   // offcanvas Menu State
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export const Header = () => {
   const loginShow = () => {
     setOpen(true);
     setSignup(false);
+    setGame(false)
   };
 
   // Signup State
@@ -31,6 +32,8 @@ export const Header = () => {
   };
   const logoutUser = () => {
     dispatch(logout());
+    localStorage.setItem("token","")
+    setGame(false)
     navigate("/");
   };
   let token = localStorage.getItem("token");
