@@ -2,10 +2,10 @@ import React from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 const CrashGame = () => {
   const unityContext = new UnityContext({
-    loaderUrl: "/Build/metacrashlast.loader.js",
-    dataUrl: "/Build/metacrashlast.data",
-    frameworkUrl: "/Build/metacrashlast.framework.js",
-    codeUrl: "/Build/metacrashlast.wasm",
+    loaderUrl: "/Build/qwertyuiop.loader.js",
+    dataUrl: "/Build/qwertyuiop.data",
+    frameworkUrl: "/Build/qwertyuiop.framework.js",
+    codeUrl: "/Build/qwertyuiop.wasm",
   });
 
   return (

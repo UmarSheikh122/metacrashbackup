@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/scss/screen.css";
 import star from "../../assets/images/star.svg";
-import gameimg from "../../assets/images/gameimg.png";
+import gameimg from "../../assets/images/gameimg.jpg";
 import play from "../../assets/images/play.svg";
 import GameCatSlider from "../../components/landing-page/gamecatslider/GameCatSlider";
 import { useDispatch } from "react-redux";
