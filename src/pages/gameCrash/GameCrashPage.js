@@ -22,7 +22,7 @@ const GameCrashPage = ({game,setGame}) => {
      setGame(true)
       }).catch((err)=>{
         console.log('err', err)
-        notfiFail("Error try again later!")
+        // notfiFail("Error try again later!")
         setGame(true)
       })
     // }
