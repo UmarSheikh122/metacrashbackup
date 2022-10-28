@@ -1,31 +1,47 @@
 import React, { useState } from "react";
 //import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
-import logo from "../../assets/images/logo.png";
-import google from "../../assets/images/google.svg";
+import sol from "../../assets/images/sol.png";
+import phantom from "../../assets/images/phantom.png";
+import metamask from "../../assets/images/metamask.png";
+import ethereum from "../../assets/images/ethereum.png";
 import { useFormik } from "formik";
-import {
-  errorSelector,
-  userAuthSelector,
-  loginUser,
-} from "../../features/userAuth/authSlice";
+// import {
+//   errorSelector,
+//   userAuthSelector,
+//   loginUser,
+// } from "../../features/userAuth/authSlice";
 import VerifyUserModal from "../verify-user/VerifyUserModal";
-
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { loginValidation } from "../../helpers/Validation";
+import Tab from "react-bootstrap/Tab";
+import Nav from "react-bootstrap/Nav";
 
-function Login({ open, setOpen, SignupShow, message }) {
-  const loginError = useSelector(errorSelector);
-  const {loading} = useSelector(userAuthSelector);
-  const [ setErrorMessage] = useState("");
+
+function Login({
+  open,
+  setOpen,
+  connectMetaMask,
+  walletAccount,
+  disconnectMetaMast,
+  connectPhantomWallet,
+  walletKey,
+  provider,
+  disconnect
+}) {
+  // const loginError = useSelector(errorSelector);
+  // const { loading } = useSelector(userAuthSelector);
+  const [setErrorMessage] = useState("");
+  const [key, setKey] = useState("home");
+
 
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
   const loginClose = () => {
     formik.resetForm();
     setOpen(false);
   };
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -35,25 +51,22 @@ function Login({ open, setOpen, SignupShow, message }) {
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      localStorage.setItem("email",values.email)
-      console.log('values.email', values.email)
-      dispatch(loginUser(values))
-        .unwrap()
-        .then(() => {
-          navigate("/");
-          formik.resetForm();
-          loginClose();
-        }).catch((err)=>{
-          if(err==="Invalid credential" ){
-            setErrorMessage(err);
-            setVerifyUserOpen(false)
-          }else{
-            setVerifyUserOpen(true)
-            loginClose();
-          }
-          
-  
-        })
+      localStorage.setItem("email", values.email);
+      console.log("values.email", values.email);
+      // dispatch(loginUser(values))
+      //   .unwrap()
+      //   .then(() => {
+      //     navigate("/");
+      //     formik.resetForm();
+      //     loginClose();
+      //   })
+      //   .catch((err) => {
+      //     if (err === "Invalid credential") {
+      //       setErrorMessage(err);
+      //     } else {
+      //       loginClose();
+      //     }
+      //   });
     },
   });
 
@@ -69,81 +82,94 @@ function Login({ open, setOpen, SignupShow, message }) {
         <Modal.Header closeButton></Modal.Header>
         <div className="container">
           <div className="row">
-            <div className="col-md-5 p-0">
-              <div className="--contet">
-                <h2>Hello Again,</h2>
-                <p className="max-25 pb-100">
-                  Play all your favorite games and get your Bonus!
-                </p>
-                <img className="img-fluid" src={logo} alt="" />
-              </div>
-            </div>
-            <div className="col-md-7">
-              <div className="form_field ">
-                <h4 className="mb-30">Login</h4>
-                <form onSubmit={formik.handleSubmit}>
-                  <div className="form-group">
-                    <input
-                      className="form-control"
-                      type="email"
-                      placeholder="Enter email"
-                      name="email"
-                      aria-label=""
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                    {formik.touched.email && formik.errors.email && (
-                      <p style={{ color: "red" }}> {formik.errors.email}</p>
-                    )}
-                    <input
-                      className="form-control"
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      aria-label=""
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                    {formik.touched.password && formik.errors.password && (
-                      <p style={{ color: "red" }}> {formik.errors.password}</p>
-                    )}
-                    <div>
-                      {loginError !== "" && (
-                        <p style={{ color: "red" }}>{loginError}</p>
-                      )}
-                    </div>
-                    <button type="submit" className="btn w-100" disabled={loading}>
-                    {loading ? (
-                      <>
-                        {" "}
-                        <span
-                          className="spinner-border spinner-border-sm"
-                          role="status"
-                          aria-hidden="true"
-                        ></span>
-                        Loading...
-                      </>
-                    ) : (
-                      <> Continue</>
-                    )}
-                    </button>
-                  </div>
-                </form>
-                <div className="form_text d-flex pt-20 align-items-center">
-                  <p className="m-0">Don’t have an account ?</p>
-                  {/* <Link>About</Link> */}
-                  <button onClick={SignupShow}>Register</button>
+            <div className="col-md-12">
+              <div className="form_field">
+                <div className="_header_connect mb-2">
+                  <span className="_connect">1</span>
+                  <h4 className="mt-2">Choose network</h4>
                 </div>
-                {/* <div className='or_text d-flex pt-20 align-items-center'>
-                  <hr />
-                  <p>or</p>
-                  <hr />
-                </div> */}
-                {/* <div>
-                  <img className="img-fluid mt-20" src={google} alt="" />
-                </div> */}
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                  <div className="_networks">
+                    <Nav variant="pills" className="flex-row _tabs">
+                      <Nav.Item className="_nav_tabs">
+                        <Nav.Link eventKey="first">
+                          <div className="_wallet_logo">
+                            <img
+                              src={sol}
+                              alt=""
+                              className="_wallet_LogoIcon"
+                            />
+                            <h5>Solana</h5>
+                          </div>
+                        </Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item className="_nav_tabs">
+                        <Nav.Link eventKey="second">
+                          <div className="_wallet_logo">
+                            <img
+                              src={ethereum}
+                              alt=""
+                              className="_wallet_LogoIcon"
+                            />
+                            <h5>Ethereum</h5>
+                          </div>
+                        </Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                  </div>
+                  <div className="_header_connect mb-2 mt-2">
+                    <span className="_connect">2</span>
+                    <h4 className="mt-2">Choose wallet</h4>
+                  </div>
+                  <div className="_networks">
+                    <Tab.Content>
+                      <Tab.Pane eventKey="first">
+                        {provider ? (
+                          <>
+                            <div className="_phantomCollect">{walletKey}</div>
+                            <button
+                              className="_phantom_disconnect"
+                              onClick={disconnect}
+                            >
+                              Disconnect
+                            </button>
+                          </>
+                        ) : (
+                          <div onClick={() => connectPhantomWallet()}>
+                            <img
+                              src={phantom}
+                              alt=""
+                              className="_wallet_LogoIcon"
+                            />
+                          </div>
+                        )}
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="second">
+                        {walletAccount ? (
+                          <>
+                            <div className="_phantomCollect">
+                              {walletAccount}
+                            </div>
+                            <button
+                              className="_phantom_disconnect"
+                              onClick={disconnectMetaMast}
+                            >
+                              Disconnect
+                            </button>
+                          </>
+                        ) : (
+                          <div onClick={() => connectMetaMask()}>
+                            <img
+                              src={metamask}
+                              alt=""
+                              className="_wallet_LogoIcon"
+                            />
+                          </div>
+                        )}
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </div>
+                </Tab.Container>
               </div>
             </div>
           </div>

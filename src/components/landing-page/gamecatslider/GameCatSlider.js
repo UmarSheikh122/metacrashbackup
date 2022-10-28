@@ -5,8 +5,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import GameCard from "../../common/GameCard";
 import cat_Leaderboard from '../../../assets/images/cat_Leaderboard.svg';
 
-
-
 const  GameCatSlider = () => {
     const settings = {
         className: "recentwins",

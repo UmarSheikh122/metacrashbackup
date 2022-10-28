@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import mobile_coins from "../../assets/images/mobile_coins.svg";
+import mobile_coins from "../../assets/images/mobile_coins.svg"; 
 import { useFormik } from "formik";
-import {
-  userAuthSelector,
-  verifyUser,
-} from "../../features/userAuth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+// import {
+//   userAuthSelector,
+//   verifyUser,
+// } from "../../features/userAuth/authSlice";
+// import { useDispatch, useSelector } from "react-redux";
 import { verificationValidation } from "../../helpers/Validation";
 import { notifySuccess } from "../common/Toast";
 
 function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
   const [message, setMessage] = useState("");
-  const {  loading } = useSelector(userAuthSelector);
+  // const {  loading } = useSelector(userAuthSelector);
   const verifyClose = () => setOpenVerifyModal(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const email = localStorage.getItem("email");
   const formik = useFormik({
@@ -25,18 +25,18 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
     validationSchema: verificationValidation,
     onSubmit: (values) => {
       values.email = localStorage.getItem('email')
-      dispatch(verifyUser(values))
-        .unwrap()
-        .then(() => {
-          formik.resetForm();
-          verifyClose();
-          localStorage.removeItem("email")
-          setMessage("Email successfully verified");
-          notifySuccess('Email successfully verified')
-        })
-        .catch((err) => {
-          console.log("err", err);
-        });
+      // dispatch(verifyUser(values))
+      //   .unwrap()
+      //   .then(() => {
+      //     formik.resetForm();
+      //     verifyClose();
+      //     localStorage.removeItem("email")
+      //     setMessage("Email successfully verified");
+      //     notifySuccess('Email successfully verified')
+      //   })
+      //   .catch((err) => {
+      //     console.log("err", err);
+      //   });
       formik.resetForm();
     },
   });
@@ -94,9 +94,9 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
                     <button
                       type="submit"
                       className="btn w-100"
-                      disabled={loading}
+                      // disabled={loading}
                     >
-                      {loading ? (
+                      {/* {loading ? (
                         <>
                           {" "}
                           <span
@@ -107,8 +107,8 @@ function VerifyUserModal({ openVerifyModal, setOpenVerifyModal, loginShow }) {
                           Loading...
                         </>
                       ) : (
+                        )} */}
                         <>Verify Email</>
-                      )}
                     </button>
                   </div>
                 </form>

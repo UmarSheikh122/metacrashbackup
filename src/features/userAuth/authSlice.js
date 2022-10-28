@@ -2,40 +2,41 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 
 //login user
-export const loginUser = createAsyncThunk("user/loginUser", async (data,thunkAPI) => {
-  console.log('data', data)
-   try{
-    return await authService.login(data)
-   }catch(err){
-    
-    return thunkAPI.rejectWithValue(err.response.data.message)
-   }
-});
+export const loginUser = createAsyncThunk(
+  "user/loginUser",
+  async (data, thunkAPI) => {
+    console.log("data", data);
+    try {
+      return await authService.login(data);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.message);
+    }
+  }
+);
 //register user
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (data,thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       return await authService.register(data);
     } catch (err) {
       console.log("err", err);
-      return thunkAPI.rejectWithValue(err.response.data.message)
+      return thunkAPI.rejectWithValue(err.response.data.message);
     }
   }
 );
 export const verifyUser = createAsyncThunk(
   "user/verifyUser",
-  async (data,thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       return await authService.verifyEmail(data);
     } catch (err) {
       console.log("err", err);
-      return thunkAPI.rejectWithValue(err.response.data.message)
+      return thunkAPI.rejectWithValue(err.response.data.message);
     }
   }
 );
-
 
 const initialState = {
   user: {},
@@ -43,7 +44,7 @@ const initialState = {
   error: null,
   loginStatus: false,
   signUpMessage: "",
-  verifyUserMessage:"",
+  verifyUserMessage: "",
   successMessage: false,
   allUsers: [],
 };
@@ -55,14 +56,14 @@ const loginSlice = createSlice({
     reset: (state) => {
       console.log("state", state.loading);
     },
-    logout:(state)=>{
-      console.log("logout")
-      state.user=null
-      state.loginStatus=false
+    logout: (state) => {
+      console.log("logout");
+      state.user = null;
+      state.loginStatus = false;
       localStorage.removeItem("token");
       localStorage.clear();
       localStorage.removeItem("user");
-    }
+    },
   },
   extraReducers: (builder) => {
     // register user
@@ -82,41 +83,40 @@ const loginSlice = createSlice({
       })
       // login user
       .addCase(loginUser.pending, (state) => {
-        state.loading = true
-        state.error = null
-        state.loginStatus = false
-        state.error=""
+        state.loading = true;
+        state.error = null;
+        state.loginStatus = false;
+        state.error = "";
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        console.log('payload', payload)
-        state.loading = false
-        state.loginStatus = true
-        state.user=payload
+        console.log("payload", payload);
+        state.loading = false;
+        state.loginStatus = true;
+        state.user = payload;
         // login successful
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
-        state.loading = false
-        state.error = payload
+        state.loading = false;
+        state.error = payload;
       })
       //varify email
-      .addCase(verifyUser.pending, (state,{payload}) => {
-        console.log('payload', payload)
-        state.loading = true
-        state.error = null
+      .addCase(verifyUser.pending, (state, { payload }) => {
+        console.log("payload", payload);
+        state.loading = true;
+        state.error = null;
       })
       .addCase(verifyUser.fulfilled, (state, { payload }) => {
-        console.log('payload', payload)
-        state.loading = false
-        state.verifyUserMessage=payload.data.result
+        console.log("payload", payload);
+        state.loading = false;
+        state.verifyUserMessage = payload.data.result;
       })
       .addCase(verifyUser.rejected, (state, { payload }) => {
-        state.loading = false
-        state.error = payload
-      })
-    
+        state.loading = false;
+        state.error = payload;
+      });
   },
 });
 export default loginSlice.reducer;
-export const userAuthSelector=(state)=>state.user
-export const errorSelector=(state)=>state.user.error
-export const { reset,logout } = loginSlice.actions;
+export const userAuthSelector = (state) => state.user;
+export const errorSelector = (state) => state.user.error;
+export const { reset, logout } = loginSlice.actions;

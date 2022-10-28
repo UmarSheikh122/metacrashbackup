@@ -1,13 +1,13 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { withdrawalPoints } from "../../../../features/game/gameSlice";
+// import { withdrawalPoints } from "../../../../features/game/gameSlice";
 import { withdrawValidation } from "../../../../helpers/Validation";
 
 const Withdraw = ({ bankingTabs, withdrawSuccess, setWithdrawSuccess }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [chain, setChain] = useState("ETH");
   const options = [
     { value: "ETH", label: "Etherium" },
@@ -26,14 +26,14 @@ const Withdraw = ({ bankingTabs, withdrawSuccess, setWithdrawSuccess }) => {
       values.usd = values.points / 6;
       values.chain = chain;
       console.log('values', values)
-      dispatch(withdrawalPoints(values))
-        .unwrap()
-        .then(() => {
-          navigate("/");
-          setChain("ETH");
-          setWithdrawSuccess(true);
-          formikWithdraw.resetForm();
-        });
+      // dispatch(withdrawalPoints(values))
+      //   .unwrap()
+      //   .then(() => {
+      //     navigate("/");
+      //     setChain("ETH");
+      //     setWithdrawSuccess(true);
+      //     formikWithdraw.resetForm();
+      //   });
     },
   });
 

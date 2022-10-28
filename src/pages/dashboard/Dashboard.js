@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-// import '../../assets/scss/screen.css'
+// import { useDispatch } from "react-redux";
+// import '../../assets/scss/screen.css' 
 import "../../assets/scss/screen.css";
 // import Bankingtab from "../../components/dashboard/dasboard-tabs/banking/Bankingtab";
-import BankingTabContent from "../../components/dashboard/dasboard-tabs/banking/BankingTabContent";
+// import BankingTabContent from "../../components/dashboard/dasboard-tabs/banking/BankingTabContent";
 // import Missiontab from "../../components/dashboard/dasboard-tabs/mission/Missiontab";
-import MissionTabContent from "../../components/dashboard/dasboard-tabs/mission/MissionTabContent";
-import DashboardBanner from "../../components/dashboard/dashboard-banner/DashboardBanner";
+// import MissionTabContent from "../../components/dashboard/dasboard-tabs/mission/MissionTabContent";
+// import DashboardBanner from "../../components/dashboard/dashboard-banner/DashboardBanner";
 
-import { getGamePoints } from "../../features//game/gameSlice";
+// import { getGamePoints } from "../../features//game/gameSlice";
 
 const Dashboard = () => {
   const [tabs, setTabs] = useState("banking");
   const [bankingTabs, setBankingTabs] = useState("deposit");
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [withdrawSuccess,setWithdrawSuccess]=useState(false) 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getGamePoints())
-  }, [dispatch,openConfirmModal,withdrawSuccess]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getGamePoints())
+  // }, [dispatch,openConfirmModal,withdrawSuccess]);
   return (
     <>
-      <DashboardBanner />
+      {/* <DashboardBanner /> */}
 
       {/* Dashboard Tabs Section */}
       <section className="tabs pt-100 pb-100">
@@ -67,7 +67,7 @@ const Dashboard = () => {
             </div>
             <div className="col-md-8 offset-md-1">
               <div className="tab-content" >
-                {tabs === "banking" ? (
+                {/* {tabs === "banking" ? (
                   <BankingTabContent
                     bankingTabs={bankingTabs}
                     withdrawSuccess={withdrawSuccess}
@@ -77,7 +77,7 @@ const Dashboard = () => {
                   />
                 ) : (
                   <MissionTabContent />
-                )}
+                )} */}
               </div>
             </div>
           </div>

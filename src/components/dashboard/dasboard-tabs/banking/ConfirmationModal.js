@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import QRCode from "../../../../assets/images/QRCode.png";
 import copy from "../../../../assets/images/copy.svg";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import ConfirmTransactionModal from "./ConfirmTransactionModal";
 import {
   transactionConfirmation,
@@ -18,23 +18,23 @@ function ConfirmationModal({
   openConfirmModal,
   setOpenConfirmModal,
 }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const confirmClose = () => setOpen(false);
   const ratesData = localStorage.getItem("ratesData");
   const rates = JSON.parse(ratesData);
 
   const handleConfirmTransaction = (event) => {
     event.preventDefault();
-    dispatch(
-      transactionConfirmation({
-        trxid: transactionId,
-        linkhash: rates?.validationhash,
-      })
-    )
-      .unwrap()
-      .then(() => {
-        setOpenConfirmModal(false);
-      });
+    // dispatch(
+    //   transactionConfirmation({
+    //     trxid: transactionId,
+    //     linkhash: rates?.validationhash,
+    //   })
+    // )
+    //   .unwrap()
+    //   .then(() => {
+    //     setOpenConfirmModal(false);
+    //   });
   };
   const handleOpenCOnfirmation = (e) => {
     e.preventDefault();

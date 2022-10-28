@@ -3,20 +3,28 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import { store, persistor } from "./app/store";
 import { BrowserRouter as Router } from "react-router-dom";
-import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+import { rootReducer } from "./app/store";
+import { saveState, loadState } from "./localStorage";
+
+import { createStore, applyMiddleware } from "redux";
+
+import thunk from "redux-thunk";
+const preloadedState = loadState();
+const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Router>
-          <App />
-        </Router>
-      </PersistGate>
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>
 );

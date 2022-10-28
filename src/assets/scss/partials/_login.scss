@@ -2,142 +2,141 @@
 // Variables
 @import "variables";
 
-.login_modal{
-    border-radius: 8px 0px 0px 8px;
-    position: relative;
-    padding: 0 !important;
-    .modal-content {
-        display: -webkit-inline-box;
+.login_modal {
+  border-radius: 8px 0px 0px 8px;
+  position: relative;
+  padding: 0 !important;
+  .modal-content {
+    display: -webkit-inline-box;
+  }
+  .modal-header {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: 0;
+  }
+  .modal-dialog {
+    width: 450px;
+    transform: translate(0, 20%) !important;
+  }
+  .--contet {
+    background: linear-gradient(90.11deg, #a95ef5 -10.48%, #7808ea 44.11%);
+    padding: 7.5rem 3.9rem 2rem;
+    color: $white;
+    min-height: 100%;
+  }
+  .form_field {
+    padding: 7.5rem 6.5rem;
+    min-height: 100%;
+    h4 {
+      color: $purple;
+      font-weight: 600;
     }
-    .modal-header{
-        position:absolute;
-        right: 1rem;
-        top: 1rem;
-        border: 0;
-    }
-    .modal-dialog {
-        max-width:968px;
-        transform: translate(0, 20%) !important;
-    }
-    .--contet{
-        background: linear-gradient(90.11deg, #A95EF5 -10.48%, #7808EA 44.11%);
-        padding: 7.5rem 3.9rem 2rem;
+    form,
+    .--modalForm {
+      input,
+      [type="password"] {
+        padding: 2rem 5rem 2rem 1rem;
+        border: 1px solid #c2c8d0;
+        border-radius: 4px;
+        margin-bottom: 1.7rem;
+        font-weight: 400;
+        font-size: 16px;
+        color: $lgrey;
+        &:focus {
+          box-shadow: none;
+          outline: none;
+        }
+        button.copy {
+          background: transparent;
+          border: 0;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+          img {
+            max-width: 4rem;
+          }
+        }
+      }
+      button[type="submit"] {
+        background: linear-gradient(90.11deg, #a95ef5 -10.48%, #7808ea 44.11%);
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 2px;
+        padding: 1.7rem 2rem;
+        font-weight: 500;
+        font-size: 16px;
         color: $white;
-        min-height: 100%;
+      }
+      .d_birth {
+        margin-bottom: 1.7rem;
+        label {
+          font-weight: 400;
+          font-size: 1.6rem;
+          letter-spacing: 0.15px;
+          color: $lgrey;
+          margin-bottom: 1.2rem;
+        }
+        .form-select {
+          width: 29%;
+          padding: 2rem;
+          font-weight: 400;
+          font-size: 1.6rem;
+          letter-spacing: 0.15px;
+          color: $lgrey;
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+      button.copy {
+        background: transparent;
+        border: 0;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        img {
+          max-width: 4rem;
+        }
+      }
     }
-    .form_field{
-        padding: 7.5rem 6.5rem;
-        min-height: 100%;
-        h4{
-            color: $purple;
-            font-weight: 600;
-        }
-        form, .--modalForm{
-            input,[type="password"] {
-                padding: 2rem 5rem 2rem 1rem;
-                border: 1px solid #C2C8D0;
-                border-radius: 4px;
-                margin-bottom: 1.7rem;
-                font-weight: 400;
-                font-size: 16px;
-                color: $lgrey;
-                &:focus{
-                    box-shadow: none;
-                    outline: none;
-                }
-                button.copy{
-                background: transparent;
-                border: 0;
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                    img{
-                        max-width: 4rem;
-                    }
-                }
-            }
-            button[type="submit"]{
-                background: linear-gradient(90.11deg, #A95EF5 -10.48%, #7808EA 44.11%);
-                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-                border-radius: 2px;
-                padding: 1.7rem 2rem;
-                font-weight: 500;
-                font-size: 16px;
-                color: $white;
-            }
-            .d_birth{
-                margin-bottom: 1.7rem;
-                label{
-                    font-weight: 400;
-                    font-size: 1.6rem;
-                    letter-spacing: 0.15px;
-                    color:$lgrey;
-                    margin-bottom: 1.2rem;
-                }
-                .form-select {
-                    width: 29%;
-                    padding: 2rem;
-                    font-weight: 400;
-                    font-size: 1.6rem;
-                    letter-spacing: 0.15px;
-                    color: $lgrey;
-                    &:focus{
-                        box-shadow: none;
-                    }
-                }
-            }
-            button.copy{
-                background: transparent;
-                border: 0;
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                    img{
-                        max-width: 4rem;
-                    }
-                }
-        }
-        .form_text {
-            p{
-                color: #2C0560;
-                font-size: 1.6rem;
-
-            }
-            button{
-                background-color: transparent;
-                border: 0;
-                font-weight: 400;
-                font-size: 1.6rem;
-                color: $purple;
-            }
-        }
+    .form_text {
+      p {
+        color: #2c0560;
+        font-size: 1.6rem;
+      }
+      button {
+        background-color: transparent;
+        border: 0;
+        font-weight: 400;
+        font-size: 1.6rem;
+        color: $purple;
+      }
     }
+  }
 }
 
-.confirmation_modal{
-    .--contet{
-        background: transparent;
-    }
+.confirmation_modal {
+  .--contet {
+    background: transparent;
+  }
 }
 // Media
 
 @media only screen and (max-width: 1024px) {
-    
-  }
+}
 
 @media only screen and (max-width: 991px) {
-    .login_modal{
-        .modal-dialog {
-            max-width: 700px;
-        }
-        .form_field {
-            padding: 7.5rem 1.5rem;
-        }
+  .login_modal {
+    .modal-dialog {
+      max-width: 450px;
     }
+    .form_field {
+      padding: 7.5rem 1.5rem;
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
-
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import "../../../../assets/scss/screen.css";
-import { getRates } from "../../../../features/game/gameSlice";
+// import { getRates } from "../../../../features/game/gameSlice";
 import Deposit from "./Deposit";
 import Withdraw from "./Withdraw";
 
@@ -20,20 +20,20 @@ function BankingTabContent({
   const [open, setOpen] = useState(false);
   const handleBuyGamePoints = (event) => {
     event.preventDefault();
-    if (amount !== 0 && amount !== "" && cryptoType !== "") {
-      const buyData = {
-        usd: amount,
-        chain: cryptoType,
-      };
-      dispatch(getRates(buyData))
-        .unwrap()
-        .then(() => {
-          setOpen(true);
-          setAmount("");
-        });
-    } else {
-      setFormError("Fields are required!");
-    }
+    // if (amount !== 0 && amount !== "" && cryptoType !== "") {
+    //   const buyData = {
+    //     usd: amount,
+    //     chain: cryptoType,
+    //   };
+    //   dispatch(getRates(buyData))
+    //     .unwrap()
+    //     .then(() => {
+    //       setOpen(true);
+    //       setAmount("");
+    //     });
+    // } else {
+    //   setFormError("Fields are required!");
+    // }
   };
 
   return (
