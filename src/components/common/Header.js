@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import User from "../dashboard/game-points/User";
 import { ethers } from "ethers";
 import ConnectWallet from "./ConnectWallet";
+import { toast } from "react-toastify";
 import { LoginAction } from "../../app/action";
 import * as web3 from "@solana/web3.js";
 import * as buffer from "buffer";
@@ -72,7 +73,7 @@ export const Header = ({ setGame, game }) => {
               dispatch(
                 LoginAction({ address: res[0], chain: "ETH" }, dispatch)
               );
-              navigate("/")
+              navigate("/");
               setWalletAccount(res[0]);
               window.ethereum
                 .request({
@@ -87,6 +88,7 @@ export const Header = ({ setGame, game }) => {
         });
     } else {
       alert("Please install Metamask to use this service!");
+      toast.error("Please install Metamask to use this service!");
     }
 
     // console.log("Please install Metamask to use this service!");
@@ -117,9 +119,9 @@ export const Header = ({ setGame, game }) => {
     // console.log("works");
     e.preventDefault();
     setWalletAccount(null);
-    localStorage.setItem("token","");
+    localStorage.setItem("token", "");
     localStorage.setItem("gamePlay", false);
-    navigate("/")
+    navigate("/");
   };
 
   // console.log(ethBalance);
@@ -156,11 +158,14 @@ export const Header = ({ setGame, game }) => {
             dispatch
           )
         );
-        navigate("/")
-
+        navigate("/");
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
+        console.log("works");
+        toast.error("Please install Metamask to use this service!");
       }
+    } else {
+      toast.error("Please install Metamask to use this service!");
     }
   };
 
@@ -175,9 +180,9 @@ export const Header = ({ setGame, game }) => {
 
         dispatch({ type: "PROVIDER", payload: null });
         dispatch({ type: "WALLET_KEY", payload: null });
-        navigate("/")
+        navigate("/");
         localStorage.setItem("gamePlay", false);
-        localStorage.setItem("token","");
+        localStorage.setItem("token", "");
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
       }
