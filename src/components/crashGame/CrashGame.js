@@ -3,10 +3,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import CircularProgress from "@mui/material/CircularProgress";
 const CrashGame = () => {
   const unityContext = new UnityContext({
-    loaderUrl: "/Build/Crash22.loader.js",
-    dataUrl: "/Build/Crash22.data",
-    frameworkUrl: "/Build/Crash22.framework.js",
-    codeUrl: "/Build/Crash22.wasm",
+    loaderUrl: "/Build/metacrashlast.loader.js",
+    dataUrl: "/Build/metacrashlast.data",
+    frameworkUrl: "/Build/metacrashlast.framework.js",
+    codeUrl: "/Build/metacrashlast.wasm",
   });
 
   let [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const CrashGame = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 10000);
+    }, 20000);
   }, []);
   // 820 x 1180 = 654 x 1163
   // 768 x 1024 = 568 x 1010
@@ -24,8 +24,16 @@ const CrashGame = () => {
   // 375 x 667  = 372 x 662
   // 360 x 740  = 348 x 619
   let windowW = window.innerWidth;
-  let width = "100%";
-  let height = "1080";
+  let width = "1600px";
+  let height = "900px";
+  if (windowW < 1600) {
+    width = "1200px";
+    height = "675px";
+  }
+  if (windowW < 1370) {
+    width = "1200px";
+    height = "675px";
+  }
   if (windowW < 830) {
     width = "654px";
     height = "1163px";
@@ -71,7 +79,7 @@ const CrashGame = () => {
               unityContext={unityContext}
               style={{
                 width: `${width}`,
-                height: windowW < 770 && `${height}`,
+                height: `${height}`,
                 justifySelf: "center",
                 alignSelf: "center",
                 marginTop: windowW < 770 ? 10 : "50px",

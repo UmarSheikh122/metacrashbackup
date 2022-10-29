@@ -58,7 +58,7 @@ export const Header = ({ setGame, game }) => {
 
   const connectMetaMask = async () => {
     if (typeof window.ethereum !== "undefined") {
-      console.log("MetaMask is installed!");
+      // console.log("MetaMask is installed!");
       window.ethereum
         .request({
           method: "wallet_requestPermissions",
@@ -68,7 +68,7 @@ export const Header = ({ setGame, game }) => {
           window.ethereum
             .request({ method: "eth_requestAccounts" })
             .then((res) => {
-              console.log(res);
+              // console.log(res);
               dispatch(
                 LoginAction({ address: res[0], chain: "ETH" }, dispatch)
               );
@@ -80,7 +80,7 @@ export const Header = ({ setGame, game }) => {
                   params: [res[0], "latest"],
                 })
                 .then((balance) => {
-                  console.log(ethers.utils.formatEther(balance));
+                  // console.log(ethers.utils.formatEther(balance));
                   setEthBalance(ethers.utils.formatEther(balance));
                 });
             });
@@ -89,7 +89,7 @@ export const Header = ({ setGame, game }) => {
       alert("Please install Metamask to use this service!");
     }
 
-    console.log("Please install Metamask to use this service!");
+    // console.log("Please install Metamask to use this service!");
   };
 
   let sendETH = async (e) => {
@@ -109,12 +109,12 @@ export const Header = ({ setGame, game }) => {
       method: "eth_sendTransaction",
       params: [tx],
     });
-    console.log(result);
+    // console.log(result);
     return result;
   };
 
   const disconnectMetaMast = (e) => {
-    console.log("works");
+    // console.log("works");
     e.preventDefault();
     setWalletAccount(null);
     localStorage.setItem("token","");
@@ -122,7 +122,7 @@ export const Header = ({ setGame, game }) => {
     navigate("/")
   };
 
-  console.log(ethBalance);
+  // console.log(ethBalance);
 
   // const [provider, setProvider] = useState(null);
   // const [walletKey, setWalletKey] = useState(null);
@@ -142,7 +142,7 @@ export const Header = ({ setGame, game }) => {
       try {
         const response = await provider.connect();
         const pubKey = await provider.publicKey;
-        console.log(pubKey);
+        // console.log(pubKey);
         // setProvider(provider);
         // setWalletKey(response.publicKey.toString());
         dispatch({ type: "PROVIDER", payload: provider });
@@ -167,11 +167,11 @@ export const Header = ({ setGame, game }) => {
   const disconnect = async (e) => {
     e.preventDefault();
     const provider = getProvider();
-    console.log("asdfasdf");
+    // console.log("asdfasdf");
     if (provider) {
       try {
         const response = await provider.disconnect();
-        console.log(response);
+        // console.log(response);
 
         dispatch({ type: "PROVIDER", payload: null });
         dispatch({ type: "WALLET_KEY", payload: null });
@@ -199,7 +199,7 @@ export const Header = ({ setGame, game }) => {
         lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
         signature: airdropSignature,
       });
-      console.log("Airdropped");
+      // console.log("Airdropped");
     } catch (error) {
       console.error(error);
     }
@@ -209,10 +209,10 @@ export const Header = ({ setGame, game }) => {
     //Changes are only here, in the beginning
     const phantomProvider = provider;
     if (!phantomProvider) {
-      console.log("No provider found", phantomProvider);
+      // console.log("No provider found", phantomProvider);
     }
     const pubKey = await phantomProvider.publicKey;
-    console.log("Public Key: ", pubKey);
+    // console.log("Public Key: ", pubKey);
 
     // Establishing connection
     var connection = new web3.Connection(
@@ -231,7 +231,7 @@ export const Header = ({ setGame, game }) => {
 
     airDropSol(connection, pubKey, lamports);
 
-    console.log("WORKED 1");
+    // console.log("WORKED 1");
     let transaction = new web3.Transaction().add(
       web3.SystemProgram.transfer({
         fromPubkey: pubKey,
@@ -245,20 +245,20 @@ export const Header = ({ setGame, game }) => {
     //   lamports: web3.LAMPORTS_PER_SOL, //Investing 1 SOL. Remember 1 Lamport = 10^-9 SOL.
     // })
     // transaction.add(instructions)
-    console.log("WORKED 2");
+    // console.log("WORKED 2");
     // Setting the variables for the transaction
     transaction.feePayer = pubKey;
 
     let blockhashObj = await connection.getRecentBlockhash();
     transaction.recentBlockhash = blockhashObj.blockhash;
 
-    console.log("provider", phantomProvider);
+    // console.log("provider", phantomProvider);
 
     let signed = "";
     try {
       signed = await phantomProvider.signTransaction(transaction);
     } catch (err) {
-      console.log("err", err);
+      // console.log("err", err);
       return { txID: false };
     }
 
@@ -266,16 +266,16 @@ export const Header = ({ setGame, game }) => {
     try {
       txid = await connection.sendRawTransaction(signed.serialize());
     } catch (ex) {
-      console.log("ex", ex);
+      // console.log("ex", ex);
       return { txID: false };
     }
 
     try {
       await connection.confirmTransaction(txid);
-      console.log("confirm", txid);
+      // console.log("confirm", txid);
       return { txID: txid };
     } catch (err) {
-      console.log("err", err);
+      // console.log("err", err);
       return { txID: false };
     }
   }

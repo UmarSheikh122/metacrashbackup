@@ -40,14 +40,18 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
     let result = await depositSol(body);
     if (result.txID) {
       body.trxId = result.txID;
-      dispatch(DepositAction(body));
+      let loginBody = {
+        address: user?.wallet,
+        chain: user?.network.toUpperCase(),
+      };
+      dispatch(DepositAction(body, loginBody));
       toast.success("Deposit successfully.");
     } else {
       toast.error("Deposit failed.");
     }
     setLoading(false);
     setDeposit({ amount: 0 });
-    console.log(result);
+    // console.log(result);
   };
   const sendWithdraw = async (e) => {
     e.preventDefault();
@@ -56,7 +60,11 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
       chain: user.network.toUpperCase(),
       address: user?.wallet,
     };
-    dispatch(WithdrawAction(body));
+    let loginBody = {
+      address: user?.wallet,
+      chain: user?.network.toUpperCase(),
+    };
+    dispatch(WithdrawAction(body, loginBody));
     setWithdraw(0);
   };
   return (

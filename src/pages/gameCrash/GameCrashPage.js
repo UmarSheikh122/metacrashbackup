@@ -19,17 +19,17 @@ const GameCrashPage = ({ setGame, game }) => {
       <section className="gamePlay pt-30 pb-40">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12" onClick={() =>
+                      gamePlayHandler({
+                        mode: "PlayForMoney",
+                      })
+                    }>
               <div className="gameScreen position-relative">
                 <img className="img-fluid" src={gameimg} alt="" />
                 <div className="DemoPlay d-flex gap-5">
                   <button
                     className="playicon"
-                    onClick={() =>
-                      gamePlayHandler({
-                        mode: "PlayForMoney",
-                      })
-                    }
+                    
                   >
                     <img className="img-fluid playicon" src={play} alt="Play" />
                   </button>

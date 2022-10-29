@@ -1,25 +1,32 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-let baseURL = process.env.REACT_APP_API_URL;
+let baseURL = process.env.REACT_APP_API_URL
 function getToken() {
   let token = localStorage.getItem("token");
 
   if (token) return token;
   return null;
 }
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
-export const LoginAction = (body, dispatch) => {
-  console.log("LoginAction>>>>", body);
+export const LoginAction = (body) => {
   return async (dispatch) => {
     let result = await axios.post(`${baseURL}/user/checkuser`, body);
-    console.log(result.data);
     if (result.data.message == "Wallet address is not avaliable") {
       dispatch(
         Signup({
           ...body,
           profile: "profile",
-          username: "username",
+          username: makeid(8),
           wallet: body.address,
         })
       );
@@ -36,10 +43,8 @@ export const LoginAction = (body, dispatch) => {
 };
 
 export const Signup = (body) => {
-  console.log("Signup>>>>", body);
   return async (dispatch) => {
     let result = await axios.post(`${baseURL}/user/createuser`, body);
-    console.log(result.data);
     if (result.data.message == "User wallet is registerd") {
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("gamePlay", true);
@@ -51,8 +56,7 @@ export const Signup = (body) => {
   };
 };
 
-export const DepositAction = (body) => {
-  console.log("DepositAction>>>>", body);
+export const DepositAction = (body, loginBody) => {
   // {
   //   "amount":2,
   //   "trxId":"9rV5yjev35P6PodKePvt9pjNqHiKHYg3LWDNkMxSFDVQ",
@@ -69,11 +73,10 @@ export const DepositAction = (body) => {
       body,
       config
     );
-    console.log(result.data);
+    dispatch(LoginAction(loginBody));
   };
 };
-export const WithdrawAction = (body) => {
-  console.log("WithdrawAction>>>>", body);
+export const WithdrawAction = (body, loginBody) => {
   // {
   //   "amount":2,
   //   "trxId":"9rV5yjev35P6PodKePvt9pjNqHiKHYg3LWDNkMxSFDVQ",
@@ -92,8 +95,9 @@ export const WithdrawAction = (body) => {
       config
     );
     if (result.data.message == "sucess") {
+      dispatch(LoginAction(loginBody));
       toast.success("Withdraw completed.");
-    }else{
+    } else {
       toast.error("Withdraw failed.");
     }
     dispatch({ type: "LOADING", payload: false });
