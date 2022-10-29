@@ -3,10 +3,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import CircularProgress from "@mui/material/CircularProgress";
 const CrashGame = () => {
   const unityContext = new UnityContext({
-    loaderUrl: "/Build/metacrashlast.loader.js",
-    dataUrl: "/Build/metacrashlast.data",
-    frameworkUrl: "/Build/metacrashlast.framework.js",
-    codeUrl: "/Build/metacrashlast.wasm",
+    loaderUrl: "/Build/Crash22.loader.js",
+    dataUrl: "/Build/Crash22.data",
+    frameworkUrl: "/Build/Crash22.framework.js",
+    codeUrl: "/Build/Crash22.wasm",
   });
 
   let [loading, setLoading] = useState(true);
