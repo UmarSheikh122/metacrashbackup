@@ -17,7 +17,8 @@ interface ITransferSolProps {
   provider: PhantomProvider;
 }
 
-const network  = "mainnet-beta";
+// const network  = "mainnet-beta";
+const network  = "devnet";
 
 const defaultDest = "A3gWSs3vB6T1hwbEP5ENJgnydBJzH3TL1QjPWASYkDbK";
 

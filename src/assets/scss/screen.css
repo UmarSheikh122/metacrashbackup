@@ -14,7 +14,11 @@ header .logo {
   align-items: center;
   gap: 6rem;
 }
-
+.gameContainer{
+  padding: 20px;
+  height: auto;
+  text-align: center;
+}
 header .search input {
   background: linear-gradient(
     155.14deg,

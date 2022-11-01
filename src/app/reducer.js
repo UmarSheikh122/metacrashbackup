@@ -13,7 +13,7 @@ export function InitReducer(state = initState, action) {
         ...state,
         token: payload.token,
         user: payload.data,
-        CC: payload.gametoken.CC,
+        CC: payload.gametoken.CC/165,
       };
     case "LOADING":
       return {

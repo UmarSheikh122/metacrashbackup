@@ -32,6 +32,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
 
   const sendDeposit = async (e) => {
     e.preventDefault();
+    try {
     if(deposit == 0){
       toast.error("Enter amount to withdraw")
       return true
@@ -55,7 +56,11 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
     }
     setLoading(false);
     setDeposit({ amount: 0 });
-    // console.log(result);
+ 
+  } catch (error) {
+    setLoading(false);
+        console.log(error)
+  }
   };
   const sendWithdraw = async (e) => {
     e.preventDefault();
@@ -64,7 +69,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
       return true
     }
     let body = {
-      points: withdraw * 1,
+      points: (withdraw * 1) * 165,
       chain: user.network.toUpperCase(),
       address: user?.wallet,
     };
@@ -167,7 +172,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
                               {loading ? (
                                 <CircularProgress size={20} />
                               ) : (
-                                "Save"
+                                "Send Request"
                               )}
                             </button>
                           </div>
@@ -176,7 +181,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
                       <Tab.Pane eventKey="third">
                         <div className="profile_Wrapper">
                           <div className="profile_items">
-                            <div className="profile_label">Points:</div>
+                            <div className="profile_label">Sol:</div>
                             <input
                               type="number"
                               className="profile_username"
@@ -204,7 +209,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
                               {loadingApi ? (
                                 <CircularProgress size={20} />
                               ) : (
-                                "Save"
+                                "Send Request"
                               )}
                             </button>
                           </div>

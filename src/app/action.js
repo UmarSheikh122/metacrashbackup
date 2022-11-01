@@ -57,13 +57,9 @@ export const Signup = (body) => {
 };
 
 export const DepositAction = (body, loginBody) => {
-  // {
-  //   "amount":2,
-  //   "trxId":"9rV5yjev35P6PodKePvt9pjNqHiKHYg3LWDNkMxSFDVQ",
-  //   "chain":"SOL"
-  // }
   return async (dispatch) => {
-    const config = {
+     try { 
+     const config = {
       headers: {
         authorization: "Bearer " + getToken(),
       },
@@ -72,19 +68,19 @@ export const DepositAction = (body, loginBody) => {
       `${baseURL}/transaction/depositTrasaction`,
       body,
       config
-    );
-    dispatch(LoginAction(loginBody));
-  };
-};
+      );
+      dispatch(LoginAction(loginBody));  
+    } catch (error) { 
+      toast.error(error.response.data.message);
+    }
+}
+}
 export const WithdrawAction = (body, loginBody) => {
-  // {
-  //   "amount":2,
-  //   "trxId":"9rV5yjev35P6PodKePvt9pjNqHiKHYg3LWDNkMxSFDVQ",
-  //   "chain":"SOL"
-  // }
+  
   return async (dispatch) => {
-    const config = {
-      headers: {
+    try {
+      const config = {
+        headers: {
         authorization: "Bearer " + getToken(),
       },
     };
@@ -94,12 +90,19 @@ export const WithdrawAction = (body, loginBody) => {
       body,
       config
     );
+    console.log(result)
     if (result.data.message == "sucess") {
       dispatch(LoginAction(loginBody));
       toast.success("Withdraw completed.");
+      dispatch({ type: "LOADING", payload: false });
     } else {
       toast.error("Withdraw failed.");
+    } 
+  } catch (error) {
+    if(error){
+      console.log(error.response.data.message)
+      dispatch({ type: "LOADING", payload: false });
+      toast.error(error.response.data.message);
     }
-    dispatch({ type: "LOADING", payload: false });
-  };
-};
+  }
+}}

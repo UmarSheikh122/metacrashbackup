@@ -6,6 +6,7 @@ import phantom from "../../assets/images/phantom.png";
 import metamask from "../../assets/images/metamask.png";
 import ethereum from "../../assets/images/ethereum.png";
 import { useFormik } from "formik";
+import {toast} from 'react-toastify'
 // import {
 //   errorSelector,
 //   userAuthSelector,
@@ -158,7 +159,8 @@ function Login({
                             </button>
                           </>
                         ) : (
-                          <div onClick={() => connectMetaMask()}>
+                          <div onClick={() => toast.error("Coming Soon.")}>
+                          {/* <div onClick={() => connectMetaMask()}> */}
                             <img
                               src={metamask}
                               alt=""

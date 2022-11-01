@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import User from "../dashboard/game-points/User";
 import { ethers } from "ethers";
-import ConnectWallet from "./ConnectWallet";
+// import ConnectWallet from "./ConnectWallet";
 import { toast } from "react-toastify";
 import { LoginAction } from "../../app/action";
 import * as web3 from "@solana/web3.js";
@@ -20,7 +20,7 @@ export const Header = ({ setGame, game }) => {
   const navigate = useNavigate();
   // offcanvas Menu State
   const dispatch = useDispatch();
-  const { CC, provider, walletKey } = useSelector((store) => store.InitReducer);
+  const { CC,  provider,walletKey } = useSelector((store) => store.InitReducer);
 
   // Login State
   const [open, setOpen] = useState(false);
@@ -50,8 +50,7 @@ export const Header = ({ setGame, game }) => {
   // const transactionf = () => {
   //   dispatch(logout());
   //   navigate("/");
-  // };
-  let token = localStorage.getItem("token");
+  // }; 
 
   //
   const [walletAccount, setWalletAccount] = useState();
@@ -142,6 +141,7 @@ export const Header = ({ setGame, game }) => {
     const provider = getProvider();
     if (provider) {
       try {
+ 
         const response = await provider.connect();
         const pubKey = await provider.publicKey;
         // console.log(pubKey);
@@ -193,6 +193,7 @@ export const Header = ({ setGame, game }) => {
 
   const airDropSol = async (connection, publicKey, lamports) => {
     try {
+      console.log(lamports)
       const airdropSignature = await connection.requestAirdrop(
         publicKey,
         lamports
@@ -213,13 +214,15 @@ export const Header = ({ setGame, game }) => {
   };
 
   async function transferSOL(body) {
+     const provider = getProvider();
     //Changes are only here, in the beginning
     const phantomProvider = provider;
     if (!phantomProvider) {
       // console.log("No provider found", phantomProvider);
     }
     const pubKey = await phantomProvider.publicKey;
-    // console.log("Public Key: ", pubKey);
+    // console.log("Public Key: ", phantomProvider);
+    // console.log("provider: ", provider);
 
     // Establishing connection
     var connection = new web3.Connection(

@@ -12,7 +12,7 @@ function User({ cc }) {
       <div className="user">
         <img className="img-fluid" src={Avatar} alt="" />
         <h4>
-          Points: {cc}
+          Sol: {(cc).toFixed(3)}
           {/* {userObj?.user?.userObj?.name} */}
           {/* some Name */}
           {/* {header==="header" && gamePoints?.points} */}
