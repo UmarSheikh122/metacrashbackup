@@ -88,7 +88,7 @@ export const Header = ({ setGame, game }) => {
         });
     } else {
       alert("Please install Metamask to use this service!");
-      toast.error("Please install Metamask to use this service!");
+      // toast.error("Please install Metamask to use this service!");
     }
 
     // console.log("Please install Metamask to use this service!");
@@ -162,10 +162,12 @@ export const Header = ({ setGame, game }) => {
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
         console.log("works");
-        toast.error("Please install Metamask to use this service!");
+        // toast.error("Please install phantom to use this service!");
+        alert("Please install phantom to use this service!");
+
       }
     } else {
-      toast.error("Please install Metamask to use this service!");
+      alert("Please install phantom to use this service!");
     }
   };
 
@@ -221,7 +223,7 @@ export const Header = ({ setGame, game }) => {
 
     // Establishing connection
     var connection = new web3.Connection(
-      web3.clusterApiUrl("devnet"),
+      web3.clusterApiUrl(process.env.REACT_APP_SOL_NETWORK),
       "confirmed"
     );
     // convert sol to lamports

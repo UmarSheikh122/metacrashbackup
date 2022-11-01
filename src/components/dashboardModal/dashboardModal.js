@@ -17,8 +17,8 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
   const [setErrorMessage] = useState("");
   const [key, setKey] = useState("home");
   const [loading, setLoading] = useState(false);
-  const [deposit, setDeposit] = useState({});
-  const [withdraw, setWithdraw] = useState();
+  const [deposit, setDeposit] = useState(0);
+  const [withdraw, setWithdraw] = useState(0);
   let { user, loadingApi } = useSelector((store) => store.InitReducer);
   const [username, setUsername] = useState(user?.username);
   let dispatch = useDispatch();
@@ -32,8 +32,12 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
 
   const sendDeposit = async (e) => {
     e.preventDefault();
+    if(deposit == 0){
+      toast.error("Enter amount to withdraw")
+      return true
+    }
     let body = {
-      amount: deposit.amount * 1,
+      amount: deposit * 1,
       chain: user.network.toUpperCase(),
     };
     setLoading(true);
@@ -55,6 +59,10 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
   };
   const sendWithdraw = async (e) => {
     e.preventDefault();
+    if(withdraw == 0){
+      toast.error("Enter amount to withdraw")
+      return true
+    }
     let body = {
       points: withdraw * 1,
       chain: user.network.toUpperCase(),
@@ -133,13 +141,8 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
                             <input
                               type="number"
                               className="profile_username"
-                              value={deposit?.amount}
-                              onChange={(e) =>
-                                setDeposit({
-                                  ...deposit,
-                                  amount: e.target.value,
-                                })
-                              }
+                              value={deposit}
+                              onChange={(e) => setDeposit(e.target.value)}
                             />
                           </div>
                           <div className="profile_items">

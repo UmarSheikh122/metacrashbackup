@@ -84,7 +84,7 @@ function App() {
 
     // Establishing connection
     var connection = new web3.Connection(
-      web3.clusterApiUrl("devnet"),
+      web3.clusterApiUrl(process.env.REACT_APP_SOL_NETWORK),
       "confirmed"
     );
 
