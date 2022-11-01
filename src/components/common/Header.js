@@ -234,7 +234,7 @@ export const Header = ({ setGame, game }) => {
 
     // I have hardcoded my secondary wallet address here. You can take this address either from user input or your DB or wherever
     var recieverWallet = new web3.PublicKey(
-      "6PAsz5tRuPjqBzZzMjqrAvKyQ4kzcdQgAQyi4pfhgbDA"
+      process.env.REACT_APP_ADMIN_SOL_ADDRESS
     );
 
     // Airdrop some SOL to the sender's wallet, so that it can handle the txn fee
