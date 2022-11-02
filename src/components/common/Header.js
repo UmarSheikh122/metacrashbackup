@@ -16,14 +16,15 @@ import * as web3 from "@solana/web3.js";
 import * as buffer from "buffer";
 window.Buffer = buffer.Buffer;
 
-export const Header = ({ setGame, game }) => {
+export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   const navigate = useNavigate();
   // offcanvas Menu State
   const dispatch = useDispatch();
-  const { CC,  provider,walletKey } = useSelector((store) => store.InitReducer);
+  const { CC, provider, walletKey } = useSelector((store) => store.InitReducer);
 
   // Login State
   const [open, setOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("first");
   const loginClose = () => setOpen(false);
   const loginShow = () => {
     setOpen(true);
@@ -50,7 +51,7 @@ export const Header = ({ setGame, game }) => {
   // const transactionf = () => {
   //   dispatch(logout());
   //   navigate("/");
-  // }; 
+  // };
 
   //
   const [walletAccount, setWalletAccount] = useState();
@@ -141,7 +142,6 @@ export const Header = ({ setGame, game }) => {
     const provider = getProvider();
     if (provider) {
       try {
- 
         const response = await provider.connect();
         const pubKey = await provider.publicKey;
         // console.log(pubKey);
@@ -164,7 +164,6 @@ export const Header = ({ setGame, game }) => {
         console.log("works");
         // toast.error("Please install phantom to use this service!");
         alert("Please install phantom to use this service!");
-
       }
     } else {
       alert("Please install phantom to use this service!");
@@ -193,7 +192,7 @@ export const Header = ({ setGame, game }) => {
 
   const airDropSol = async (connection, publicKey, lamports) => {
     try {
-      console.log(lamports)
+      console.log(lamports);
       const airdropSignature = await connection.requestAirdrop(
         publicKey,
         lamports
@@ -214,7 +213,7 @@ export const Header = ({ setGame, game }) => {
   };
 
   async function transferSOL(body) {
-     const provider = getProvider();
+    const provider = getProvider();
     //Changes are only here, in the beginning
     const phantomProvider = provider;
     if (!phantomProvider) {
@@ -290,8 +289,11 @@ export const Header = ({ setGame, game }) => {
     }
   }
 
-  const openDashboard = (e) => {
+  const openDashboard = (tab) => {
     setSignup(true);
+    if (tab) {
+      setActiveTab(tab);
+    }
   };
   return (
     <>
@@ -337,9 +339,25 @@ export const Header = ({ setGame, game }) => {
                 )}
                 {walletAccount && (
                   <div className="user_icon d-flex align-items-center">
-                    <User header="header" cc={CC} />
+                    <Nav.Link
+                      to=""
+                      className="btn menu-btn"
+                      onClick={() => openDashboard("second")}
+                      style={{ padding: "10px 20px" }}
+                    >
+                      Deposit
+                    </Nav.Link>
+                    <Nav.Link
+                      to=""
+                      className="btn menu-btn"
+                      onClick={() => openDashboard("third")}
+                      style={{ marginRight: 100, padding: "10px 20px" }}
+                    >
+                      Withdraw
+                    </Nav.Link>
+                    <User header="header" cc={CC} showPoints={showPoints}/>
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={openDashboard}>
+                      <NavDropdown.Item onClick={() => openDashboard("first")}>
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnectMetaMast}>
@@ -350,9 +368,25 @@ export const Header = ({ setGame, game }) => {
                 )}
                 {walletKey && (
                   <div className="user_icon d-flex align-items-center">
-                    <User header="header" cc={CC} />
+                    <Nav.Link
+                      to=""
+                      className="btn menu-btn"
+                      onClick={() => openDashboard("second")}
+                      style={{ padding: "10px 20px" }}
+                    >
+                      Deposit
+                    </Nav.Link>
+                    <Nav.Link
+                      to=""
+                      className="btn menu-btn"
+                      onClick={() => openDashboard("third")}
+                      style={{ marginRight: 100, padding: "10px 20px" }}
+                    >
+                      Withdraw
+                    </Nav.Link>
+                    <User header="header" cc={CC} showPoints={showPoints}/>
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={openDashboard}>
+                      <NavDropdown.Item onClick={() => openDashboard("first")}>
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnect}>
@@ -387,6 +421,7 @@ export const Header = ({ setGame, game }) => {
         setSignup={setSignup}
         depositSol={transferSOL}
         sendETH={sendETH}
+        activeTab={activeTab}
       />
     </>
   );

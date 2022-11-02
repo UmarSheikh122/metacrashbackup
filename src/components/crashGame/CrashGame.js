@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Unity, { UnityContext } from "react-unity-webgl";
+import React, { useEffect, useState } from "react"; 
+// import Unity, { useUnityContext } from "react-unity-webgl";
 import CircularProgress from "@mui/material/CircularProgress";
-const CrashGame = () => {
-  const unityContext = new UnityContext({
+import { Unity, useUnityContext } from "react-unity-webgl";
+const CrashGame = ({ showPoints, setShowPoints }) => {
+  const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: "/Build/CrashNonCompress.loader.js",
     dataUrl: "/Build/CrashNonCompress.data",
     frameworkUrl: "/Build/CrashNonCompress.framework.js",
@@ -14,42 +15,42 @@ const CrashGame = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 20000);
+      setShowPoints(false);
+    }, 3000);
   }, []);
-  
-  let windowW = window.innerWidth/1.1;
-  let HeightH = window.innerHeight/1.1;
-  console.log(windowW, HeightH)
-  
+
+  let windowW = window.innerWidth / 1.35;
+  let HeightH = window.innerHeight / 1.35;
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12 gameContainer">
-          {loading ? (
+          {!isLoaded && (
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: '100px'
+                marginTop: "100px",
               }}
             >
               <CircularProgress />
             </div>
-          ) : (
-            <Unity
-              unityContext={unityContext}
-              style={{
-                width: `${windowW}px`,
-                height: `${HeightH}px`,
-                justifySelf: "center",
-                alignSelf: "center",
-                marginTop: "10px",
-                marginBottom: "50px",
-              }}
-            />
           )}
+           
+          <Unity
+            unityProvider={unityProvider}
+            style={{
+              width: `${windowW}px`,
+              height: `${HeightH}px`,
+              justifySelf: "center",
+              alignSelf: "center",
+              marginTop: "10px",
+              marginBottom: "50px",
+              visibility: isLoaded ? "visible" : "hidden",
+            }}
+          />
         </div>
       </div>
     </div>

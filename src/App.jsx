@@ -13,16 +13,23 @@ import CrashGame from "./components/crashGame/CrashGame";
 
 const App = () => {
   let [game, setGame] = useState(false);
+  let [showPoints, setShowPoints] = useState(true);
   return (
     <div>
-      <Header setGame={setGame} game={game} />  
+      <Header setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints} />
       <Routes>
         <Route
           index
           path="/"
-          element={<GameCrashPage setGame={setGame} game={game} />}
+          element={<GameCrashPage setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints}/>}
         />
-        <Route index path="/game_play" element={<CrashGame />} />
+        <Route
+          index
+          path="/game_play"
+          element={
+            <CrashGame setShowPoints={setShowPoints} showPoints={showPoints} />
+          }
+        />
         <Route
           path="/dashboard"
           element={

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/scss/screen.css";
 import gameimg from "../../assets/images/bgImg.jpeg";
 import play from "../../assets/images/play.svg";
 // import { useDispatch } from "react-redux";
 // import Solana from "./solana";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
-const GameCrashPage = ({ setGame, game }) => {
+const GameCrashPage = ({ setGame, game, setShowPoints }) => {
   const [openGame, setOpenGame] = useState(game);
   // const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  useEffect(() => {
+    setShowPoints(true);
+  }, []);
   const gamePlayHandler = (playGame) => {
     navigate("/game_play");
   };
@@ -19,18 +21,18 @@ const GameCrashPage = ({ setGame, game }) => {
       <section className="gamePlay pt-30 pb-40">
         <div className="container">
           <div className="row">
-            <div className="col-md-12" onClick={() =>
-                      gamePlayHandler({
-                        mode: "PlayForMoney",
-                      })
-                    }>
+            <div
+              className="col-md-12"
+              onClick={() =>
+                gamePlayHandler({
+                  mode: "PlayForMoney",
+                })
+              }
+            >
               <div className="gameScreen position-relative">
                 <img className="img-fluid" src={gameimg} alt="" />
                 <div className="DemoPlay d-flex gap-5">
-                  <button
-                    className="playicon"
-                    
-                  >
+                  <button className="playicon">
                     <img className="img-fluid playicon" src={play} alt="Play" />
                   </button>
                 </div>
@@ -40,7 +42,6 @@ const GameCrashPage = ({ setGame, game }) => {
         </div>
         {/* <Solana /> */}
       </section>
-
     </>
   );
 };

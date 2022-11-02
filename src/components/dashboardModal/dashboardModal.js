@@ -13,7 +13,7 @@ import { DepositAction, WithdrawAction } from "../../app/action";
 import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
 
-function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
+function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
   const [setErrorMessage] = useState("");
   const [key, setKey] = useState("home");
   const [loading, setLoading] = useState(false);
@@ -33,43 +33,42 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
   const sendDeposit = async (e) => {
     e.preventDefault();
     try {
-    if(deposit == 0){
-      toast.error("Enter amount to withdraw")
-      return true
-    }
-    let body = {
-      amount: deposit * 1,
-      chain: user.network.toUpperCase(),
-    };
-    setLoading(true);
-    let result = await depositSol(body);
-    if (result.txID) {
-      body.trxId = result.txID;
-      let loginBody = {
-        address: user?.wallet,
-        chain: user?.network.toUpperCase(),
+      if (deposit == 0) {
+        toast.error("Enter amount to withdraw");
+        return true;
+      }
+      let body = {
+        amount: deposit * 1,
+        chain: user.network.toUpperCase(),
       };
-      dispatch(DepositAction(body, loginBody));
-      toast.success("Deposit successfully.");
-    } else {
-      toast.error("Deposit failed.");
+      setLoading(true);
+      let result = await depositSol(body);
+      if (result.txID) {
+        body.trxId = result.txID;
+        let loginBody = {
+          address: user?.wallet,
+          chain: user?.network.toUpperCase(),
+        };
+        dispatch(DepositAction(body, loginBody));
+        toast.success("Deposit successfully.");
+      } else {
+        toast.error("Deposit failed.");
+      }
+      setLoading(false);
+      setDeposit({ amount: 0 });
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
     }
-    setLoading(false);
-    setDeposit({ amount: 0 });
- 
-  } catch (error) {
-    setLoading(false);
-        console.log(error)
-  }
   };
   const sendWithdraw = async (e) => {
     e.preventDefault();
-    if(withdraw == 0){
-      toast.error("Enter amount to withdraw")
-      return true
+    if (withdraw == 0) {
+      toast.error("Enter amount to withdraw");
+      return true;
     }
     let body = {
-      points: (withdraw * 1) * 165,
+      points: withdraw * 1 * 165,
       chain: user.network.toUpperCase(),
       address: user?.wallet,
     };
@@ -95,7 +94,10 @@ function DashboardModal({ Signupopen, setSignup, depositSol, sendETH }) {
           <div className="row">
             <div className="col-md-12">
               <div className="form_field">
-                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                <Tab.Container
+                  id="left-tabs-example"
+                  defaultActiveKey={activeTab}
+                >
                   <div className="mb-4">
                     <Nav variant="pills" className="flex-row _tabs">
                       <Nav.Item className="_nav_tabs">
