@@ -2,7 +2,8 @@ let initState = {
   state: null,
   loadingApi: false,
   walletKey: false,
-  provider: false
+  provider: false,
+  CC: 0
 };
 
 export function InitReducer(state = initState, action) {
