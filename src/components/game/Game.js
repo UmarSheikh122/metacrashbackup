@@ -1,25 +1,54 @@
-import React from "react";
-import Unity, { UnityContext } from "react-unity-webgl";
-const Game = () => {
-  const unityContext = new UnityContext({
-    loaderUrl: "/Build/newbuild.loader.js",
-    dataUrl: "/Build/newbuild.data",
-    frameworkUrl: "/Build/newbuild.framework.js",
-    codeUrl: "/Build/newbuild.wasm",
+import React, { useEffect, useState } from "react"; 
+// import Unity, { useUnityContext } from "react-unity-webgl";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Unity, useUnityContext } from "react-unity-webgl";
+const CrashGame = ({ showPoints, setShowPoints }) => {
+  const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
+    loaderUrl: "/Build/CrashNonCompress.loader.js",
+    dataUrl: "/Build/CrashNonCompress.data",
+    frameworkUrl: "/Build/CrashNonCompress.framework.js",
+    codeUrl: "/Build/CrashNonCompress.wasm",
   });
+
+  let [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      setShowPoints(false);
+    }, 3000);
+  }, []);
+
+  let windowW = window.innerWidth / 1.35;
+  let HeightH = window.innerHeight / 1.35;
 
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-12 ">
-            
+        <div className="col-md-12 gameContainer">
+          {!isLoaded && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "100px",
+              }}
+            >
+              <CircularProgress />
+            </div>
+          )}
+           
           <Unity
-            unityContext={unityContext}
+            unityProvider={unityProvider}
             style={{
-              width: "100%",
+              width: `${windowW}px`,
+              height: `${HeightH}px`,
               justifySelf: "center",
               alignSelf: "center",
-              marginTop:"50px"
+              marginTop: "10px",
+              marginBottom: "50px",
+              visibility: isLoaded ? "visible" : "hidden",
             }}
           />
         </div>
@@ -27,4 +56,4 @@ const Game = () => {
     </div>
   );
 };
-export default Game;
+export default CrashGame;

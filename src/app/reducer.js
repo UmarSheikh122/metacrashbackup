@@ -3,7 +3,7 @@ let initState = {
   loadingApi: false,
   walletKey: false,
   provider: false,
-  CC: 0
+  CC: false,
 };
 
 export function InitReducer(state = initState, action) {
@@ -14,7 +14,7 @@ export function InitReducer(state = initState, action) {
         ...state,
         token: payload.token,
         user: payload.data,
-        CC: payload.gametoken.CC/165,
+        CC: payload.gametoken.CC / 165,
       };
     case "LOADING":
       return {
