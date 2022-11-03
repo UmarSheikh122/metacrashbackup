@@ -3,10 +3,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import CircularProgress from "@mui/material/CircularProgress";
 const CrashGame = () => {
   const unityContext = new UnityContext({
-    loaderUrl: "/Build/FinalNonCompressed.loader.js",
-    dataUrl: "/Build/FinalNonCompressed.data",
-    frameworkUrl: "/Build/FinalNonCompressed.framework.js",
-    codeUrl: "/Build/FinalNonCompressed.wasm",
+    loaderUrl: "/Build/FinalNonCompressed2.loader.js",
+    dataUrl: "/Build/FinalNonCompressed2.data",
+    frameworkUrl: "/Build/FinalNonCompressed2.framework.js",
+    codeUrl: "/Build/FinalNonCompressed2.wasm",
   });
 
   let [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ const CrashGame = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-12 gameContainer">
-          {loading ? (
+          {/* {loading ? (
             <div
               style={{
                 display: "flex",
@@ -37,7 +37,7 @@ const CrashGame = () => {
             >
               <CircularProgress />
             </div>
-          ) : (
+          ) : ( */}
             <Unity
               unityContext={unityContext}
               style={{
@@ -49,7 +49,7 @@ const CrashGame = () => {
                 marginBottom: "50px",
               }}
             />
-          )}
+          {/* )} */}
         </div>
       </div>
     </div>
