@@ -8,7 +8,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import GamePage from "./pages/game/GamePage";
 import GameCrashPage from "./pages/gameCrash/GameCrashPage";
 import { RequireAuth } from "./pages/protectedroute/RequireAuth";
-import React, { useEffect, useState } from "react";
+import React, { useState,useEffect } from "react";
 import CrashGame from "./components/crashGame/CrashGame";
 
 
