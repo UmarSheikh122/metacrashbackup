@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 // import Unity, { useUnityContext } from "react-unity-webgl";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useNavigate } from "react-router";
 const CrashGame = ({ showPoints, setShowPoints }) => {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "/Build/nonCompress3.loader.js",
-    dataUrl: "/Build/nonCompress3.data",
-    frameworkUrl: "/Build/nonCompress3.framework.js",
-    codeUrl: "/Build/nonCompress3.wasm",
+    loaderUrl: "/Build/FinalNonCompressed2.loader.js",
+    dataUrl: "/Build/FinalNonCompressed2.data",
+    frameworkUrl: "/Build/FinalNonCompressed2.framework.js",
+    codeUrl: "/Build/FinalNonCompressed2.wasm",
+    webglContextAttributes: {
+      preserveDrawingBuffer: true,
+    },
   });
+  const navigate = useNavigate();
 
   let [loading, setLoading] = useState(true);
 
@@ -17,6 +22,10 @@ const CrashGame = ({ showPoints, setShowPoints }) => {
       setLoading(false);
       setShowPoints(false);
     }, 3000);
+    return () => {
+      window.location.reload(false);
+      navigate("/");
+    };
   }, []);
 
   let windowW = window.innerWidth / 1.35;
@@ -38,7 +47,7 @@ const CrashGame = ({ showPoints, setShowPoints }) => {
               <CircularProgress />
             </div>
           )}
-           
+
           <Unity
             unityProvider={unityProvider}
             style={{
