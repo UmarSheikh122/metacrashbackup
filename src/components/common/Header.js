@@ -6,7 +6,7 @@ import logo from "../../assets/images/logo.png";
 import Login from "../login/Login";
 import DashboardModal from "../dashboardModal/dashboardModal";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import User from "../dashboard/game-points/User";
 import { ethers } from "ethers";
 // import ConnectWallet from "./ConnectWallet";
@@ -18,12 +18,13 @@ window.Buffer = buffer.Buffer;
 
 export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   // offcanvas Menu State
   const dispatch = useDispatch();
   const { CC, provider, walletKey } = useSelector((store) => store.InitReducer);
 
   // Login State
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); //Login
   const [activeTab, setActiveTab] = useState("first");
   const loginClose = () => setOpen(false);
   const loginShow = () => {
@@ -158,7 +159,11 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
             dispatch
           )
         );
-        navigate("/");
+        setTimeout(()=> {
+          if (location.pathname == "/game_play")
+               window.location.reload(false);
+        },2000)
+        ///HELL
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
         console.log("works");
