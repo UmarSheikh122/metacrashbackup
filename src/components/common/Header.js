@@ -338,7 +338,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       className="btn menu-btn"
                       onClick={loginShow}
                     >
-                      Connect Wallet 2.0
+                      Connect Wallet
                     </Nav.Link>
                   </>
                 )}
