@@ -244,9 +244,13 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
     //Changes are only here, in the beginning
     const phantomProvider = provider;
     if (!phantomProvider) {
-      // console.log("No provider found", phantomProvider);
+      console.log("NOOOO Provider")
+      // // console.log("No prkovider found", phantomProvider);
     }
-    const pubKey = await phantomProvider?.publicKey;
+    const pubKey = await phantomProvider.publicKey;
+    console.log('pubKey: ', pubKey);
+      console.log("YES Provider");
+
     // console.log("Public Key: ", phantomProvider);
     // console.log("provider: ", provider);
 
