@@ -75,7 +75,7 @@ export const DepositAction = (body, loginBody) => {
     }
 }
 }
-export const WithdrawAction = (body, loginBody) => {
+export const WithdrawAction = (body, loginBody, callback=null) => {
   
   return async (dispatch) => {
     try {
@@ -95,6 +95,8 @@ export const WithdrawAction = (body, loginBody) => {
       dispatch(LoginAction(loginBody));
       toast.success("Withdraw completed.");
       dispatch({ type: "LOADING", payload: false });
+      callback && callback();
+
     } else {
       toast.error("Withdraw failed.");
     } 

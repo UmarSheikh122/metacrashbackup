@@ -131,12 +131,32 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   // const [walletKey, setWalletKey] = useState(null);
 
   const getProvider = () => {
-    if ("solana" in window) {
-      const provider = window.solana;
-      if (provider.isPhantom) {
+    // if ("phantom" in window){
+    //   console.log('window: ', window);
+    // }
+    //   if ("solana" in window) {
+    //     window.solana.connect({
+    //       onlyIfTrusted: true,
+    //     });
+    //     const provider = window.solana;
+    //     if (provider.isPhantom) {
+    //       return provider;
+    //     } else {
+    //       window.open("https://www.phantom.app/", "_blank");
+    //       return undefined;
+    //     }
+    //   }
+
+    if ("phantom" in window) {
+      const provider = window.phantom?.solana;
+
+      if (provider?.isPhantom) {
         return provider;
       }
     }
+
+    window.open("https://phantom.app/", "_blank");
+
   };
 
   const connectPhantomWallet = async () => {
@@ -144,7 +164,8 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
     if (provider) {
       try {
         const response = await provider.connect();
-        const pubKey = await provider.publicKey;
+
+        const pubKey = await response.publicKey;
         // console.log(pubKey);
         // setProvider(provider);
         // setWalletKey(response.publicKey.toString());
@@ -219,12 +240,13 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
 
   async function transferSOL(body) {
     const provider = getProvider();
+    const xyz = await provider.connect();
     //Changes are only here, in the beginning
     const phantomProvider = provider;
     if (!phantomProvider) {
       // console.log("No provider found", phantomProvider);
     }
-    const pubKey = await phantomProvider.publicKey;
+    const pubKey = await phantomProvider?.publicKey;
     // console.log("Public Key: ", phantomProvider);
     // console.log("provider: ", provider);
 

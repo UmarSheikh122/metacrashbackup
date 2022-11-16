@@ -5,7 +5,7 @@ import phantom from "../../assets/images/phantom.png";
 import metamask from "../../assets/images/metamask.png";
 import ethereum from "../../assets/images/ethereum.png";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,8 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
   const [username, setUsername] = useState(user?.username);
   let dispatch = useDispatch();
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
+   const navigate = useNavigate();
+   const location = useLocation();
 
   useEffect(() => {
     if (user) {
@@ -30,8 +32,20 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
     }
   }, [user]);
 
+  const refreshPage = () => {
+    setTimeout(() => {
+      if (location.pathname == "/game_play") 
+        window.location.reload(false);
+    }, 2000);
+  }
   const sendDeposit = async (e) => {
     e.preventDefault();
+    let token = localStorage.getItem("token")
+      // if(!token)
+      //   {
+      //     toast.error("Please login again");
+      //     return;
+      //   }
     try {
       if (deposit == 0) {
         toast.error("Enter amount to withdraw");
@@ -51,6 +65,10 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
         };
         dispatch(DepositAction(body, loginBody));
         toast.success("Deposit successfully.");
+        setTimeout(()=> {
+          if (location.pathname == "/game_play")
+            window.location.reload(false);
+        },2000)
       } else {
         toast.error("Deposit failed.");
       }
@@ -76,7 +94,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
       address: user?.wallet,
       chain: user?.network.toUpperCase(),
     };
-    dispatch(WithdrawAction(body, loginBody));
+    dispatch(WithdrawAction(body, loginBody, refreshPage));
     setWithdraw(0);
   };
   return (
