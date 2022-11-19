@@ -10,6 +10,7 @@ import GameCrashPage from "./pages/gameCrash/GameCrashPage";
 import { RequireAuth } from "./pages/protectedroute/RequireAuth";
 import React, { useState,useEffect } from "react";
 import CrashGame from "./components/crashGame/CrashGame";
+import Maintainence from "./Maintainence";
 
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
 }, [])
   return (
     <div>
-      <Header setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints} />
+      {/* <Header setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints} />
       <Routes>
         <Route
           index
@@ -47,8 +48,8 @@ const App = () => {
           }
         />
         <Route path="/game" element={<GamePage />} />
-      </Routes>
-
+      </Routes> */}
+        <Maintainence/>
       {/* <Footer /> */}
     </div>
   );
