@@ -9,7 +9,7 @@ const Maintainence = () => {
       <div className="uc__details">
         <h1 className="title">Coming Soon!</h1>
         <h3 className="intro">
-          This website is under construction 
+          This website is under maintenance. 
         </h3>
       </div>
       <div className="uc__art">
