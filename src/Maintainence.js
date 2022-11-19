@@ -1,22 +1,22 @@
 import { Box } from '@mui/system'
+import undercontruction from "./assets/images/under_construction.svg";
 import React from 'react'
+import "./maintenance.css";
 
 const Maintainence = () => {
   return (
-    <Box sx={{
-        textAlign: "center",
-        backgroundColor: "white",
-        height: "100vh",
-        color: "black",
-        fontWeight: "600px",
-        fontSize: "40px",
-        verticalAlign: "middle",
-    }}>
-        <p style={{
-            paddingTop: "20%"
-        }}> WEBSITE IS UNDER MAINTAINENCE... </p>
-    </Box>
-  )
+    <div className="uc__wrapper">
+      <div className="uc__details">
+        <h1 className="title">Coming Soon!</h1>
+        <h3 className="intro">
+          This website is under construction 
+        </h3>
+      </div>
+      <div className="uc__art">
+        <img src={undercontruction} alt="" />
+      </div>
+    </div>
+  );
 }
 
 export default Maintainence
