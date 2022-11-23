@@ -2,19 +2,22 @@ let initState = {
   state: null,
   loadingApi: false,
   walletKey: false,
+  walletAccount: false,
   provider: false,
   CC: false,
+  SOL: 0,
+  ETH: 0,
 };
 
 export function InitReducer(state = initState, action) {
   let { type, payload } = action;
+  console.log('type: ', type);
+  console.log('payload: ', payload);
   switch (type) {
     case "LOGIN":
       return {
         ...state,
-        token: payload.token,
-        user: payload.data,
-        CC: payload.gametoken.CC / 165,
+        ...payload,
       };
     case "LOADING":
       return {
@@ -31,7 +34,11 @@ export function InitReducer(state = initState, action) {
         ...state,
         walletKey: payload,
       };
-
+    case "WALLET_ACCOUNT":
+      return {
+        ...state,
+        walletAccount: payload,
+      };
     default:
       return state;
   }

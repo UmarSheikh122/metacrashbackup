@@ -4,7 +4,8 @@ import Avatar from "../../../assets/images/Avatar.svg";
 // import {userAuthSelector} from "../../../features/userAuth/authSlice"
 // import { gamePointSelector } from "../../../features/game/gameSlice";
 
-function User({ cc, showPoints }) {
+function User({ cc, showPoints, eth =false, SOL, ETH }) {
+  console.log('eth: ', eth);
   // const gamePoints=useSelector(gamePointSelector)
   // const userObj=useSelector(userAuthSelector)
   return (
@@ -17,7 +18,7 @@ function User({ cc, showPoints }) {
           style={{ height: "40px" }}
         />
         <h4>
-          {showPoints ? `Sol: ${cc ? cc.toFixed(3) : 0}` : ""}
+          {showPoints ? eth ? `Eth: ${ETH?.toFixed(7) || "FALSE"}` : `Sol: ${SOL?.toFixed(3) || "FALSE"}` : ""}
           {/* {userObj?.user?.userObj?.name} */}
           {/* some Name */}
           {/* {header==="header" && gamePoints?.points} */}

@@ -4,6 +4,7 @@ import sol from "../../assets/images/sol.png";
 import phantom from "../../assets/images/phantom.png";
 import metamask from "../../assets/images/metamask.png";
 import ethereum from "../../assets/images/ethereum.png";
+import { ethers } from "ethers";
 import { useFormik } from "formik";
 import { useLocation, useNavigate } from "react-router";
 import Tab from "react-bootstrap/Tab";
@@ -12,8 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { DepositAction, WithdrawAction } from "../../app/action";
 import CircularProgress from "@mui/material/CircularProgress";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { EncryptData } from "../../utils/Aes";
 
-function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
+function DashboardModal({ Signupopen, 
+  setSignup, 
+  depositSol, 
+  activeTab, 
+  phantomWalletConnect, 
+  metaMaskWalletConnect
+}) {
   const [setErrorMessage] = useState("");
   const [key, setKey] = useState("home");
   const [loading, setLoading] = useState(false);
@@ -23,8 +32,9 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
   const [username, setUsername] = useState(user?.username);
   let dispatch = useDispatch();
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
-   const navigate = useNavigate();
-   const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log('user: ', user);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +47,73 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
       if (location.pathname == "/game_play") 
         window.location.reload(false);
     }, 2000);
+  }
+  const ethDeposit = async (e) => {
+    e.preventDefault();
+    try {
+      if(deposit == 0){
+        toast.error("Enter amount to Deposit");
+        return;
+      }
+          let API_Response = await axios.post(
+            `${process.env.REACT_APP_API_URL}/user/validatetoken`,
+            {},
+            {
+              headers: {
+                authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          );
+        console.log('API_Response****: ', API_Response);
+      if(API_Response?.status === 200) {
+          let body = {
+            amount: deposit * 1,
+            chain: user.network.toUpperCase(),
+          };
+          setLoading(true);
+          if (!window.ethereum) {
+            alert("Please install Metamask Wallet");
+            return;
+          }
+          await window.ethereum.send("eth_requestAccounts");
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const tx = await signer.sendTransaction({
+            to: process.env.REACT_APP_ADMIN_ETH_ADDRESS,
+            value: ethers.utils.parseEther(deposit),
+          });
+          if (tx) {
+            body.trxId = tx?.hash;
+
+              let encryptedBody = EncryptData(body);
+
+            let loginBody = {
+              address: user?.wallet,
+              chain: user?.network.toUpperCase(),
+            };
+            dispatch(DepositAction({ encrypteddata: encryptedBody}, loginBody));
+
+            setTimeout(() => {
+              if (location.pathname == "/game_play")
+                window.location.reload(false);
+            }, 2000);
+          } else {
+            toast.error("Deposit failed");
+          }
+          setLoading(false);
+          setDeposit({
+            amount: 0,
+          });
+      }else {
+        toast.error(API_Response.message || "Auth Failed");
+      }
+      
+    } catch(err){
+      toast.error(err?.response?.data?.message || "Transaction Failed");
+      setLoading(false);
+        console.log("error", err)
+    }
+
   }
   const sendDeposit = async (e) => {
     e.preventDefault();
@@ -51,34 +128,70 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
         toast.error("Enter amount to withdraw");
         return true;
       }
-      let body = {
-        amount: deposit * 1,
-        chain: user.network.toUpperCase(),
-      };
-      setLoading(true);
-      let result = await depositSol(body);
-      if (result.txID) {
-        body.trxId = result.txID;
-        let loginBody = {
-          address: user?.wallet,
-          chain: user?.network.toUpperCase(),
-        };
-        dispatch(DepositAction(body, loginBody));
-        toast.success("Deposit successfully.");
-        setTimeout(()=> {
-          if (location.pathname == "/game_play")
-            window.location.reload(false);
-        },2000)
-      } else {
-        toast.error("Deposit failed.");
+
+      let API_Response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/validatetoken`,
+        {},
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+        console.log('API_Response****: ', API_Response);
+      if(API_Response?.status === 200) 
+      {
+         let body = {
+           amount: deposit * 1,
+           chain: user.network.toUpperCase(),
+         };
+         setLoading(true);
+         let result = await depositSol(body);
+         if (result.txID) {
+           body.trxId = result.txID;
+           let encryptedBody = EncryptData(body);
+           let loginBody = {
+             address: user?.wallet,
+             chain: user?.network.toUpperCase(),
+           };
+           dispatch(DepositAction({ encrypteddata: encryptedBody }, loginBody));
+           setTimeout(() => {
+             if (location.pathname == "/game_play")
+               window.location.reload(false);
+           }, 2000);
+         } else {
+           toast.error("Deposit failed.");
+         }
+         setLoading(false);
+         setDeposit({ amount: 0 });
       }
-      setLoading(false);
-      setDeposit({ amount: 0 });
+     
     } catch (error) {
       setLoading(false);
+      toast.error(error?.response?.data?.message || "Authentication Failed")
       console.log(error);
     }
   };
+
+  const ethWithdraw = async (e) => {
+    e.preventDefault();
+    if(withdraw === 0){
+      toast.error("Enter amount to withdraw");
+      return;
+    }
+    let body = {
+      points: withdraw * 1,
+      chain: user.network.toUpperCase(),
+      address: user?.wallet,
+    };
+    let encryptedBody = EncryptData(body);
+    let loginBody = {
+      address: user?.wallet,
+      chain: user?.network.toUpperCase(),
+    };
+     dispatch(WithdrawAction({ encrypteddata : encryptedBody}, loginBody, refreshPage));
+     setWithdraw(0);
+  }
   const sendWithdraw = async (e) => {
     e.preventDefault();
     if (withdraw == 0) {
@@ -86,15 +199,19 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
       return true;
     }
     let body = {
-      points: withdraw * 1 * 165,
+      points: withdraw * 1,
       chain: user.network.toUpperCase(),
       address: user?.wallet,
     };
+    let encryptedBody = EncryptData(body);
+    
     let loginBody = {
       address: user?.wallet,
       chain: user?.network.toUpperCase(),
     };
-    dispatch(WithdrawAction(body, loginBody, refreshPage));
+    dispatch(
+      WithdrawAction({ encrypteddata: encryptedBody }, loginBody, refreshPage)
+    );
     setWithdraw(0);
   };
   return (
@@ -185,7 +302,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
                             <button
                               className="profile_save"
                               onClick={(e) => {
-                                sendDeposit(e);
+                                metaMaskWalletConnect ? ethDeposit(e) : sendDeposit(e);
                               }}
                               disabled={loading}
                             >
@@ -201,7 +318,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
                       <Tab.Pane eventKey="third">
                         <div className="profile_Wrapper">
                           <div className="profile_items">
-                            <div className="profile_label">Sol:</div>
+                            <div className="profile_label"> {metaMaskWalletConnect ? "Eth:" : "Sol:" }</div>
                             <input
                               type="number"
                               className="profile_username"
@@ -223,7 +340,7 @@ function DashboardModal({ Signupopen, setSignup, depositSol, activeTab }) {
                           <div className="profile_items">
                             <button
                               className="profile_save"
-                              onClick={sendWithdraw}
+                              onClick={(e)=> metaMaskWalletConnect ?  ethWithdraw(e) : sendWithdraw(e)}
                               disabled={loadingApi}
                             >
                               {loadingApi ? (

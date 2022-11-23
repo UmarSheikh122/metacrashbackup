@@ -10,22 +10,22 @@ import GameCrashPage from "./pages/gameCrash/GameCrashPage";
 import { RequireAuth } from "./pages/protectedroute/RequireAuth";
 import React, { useState,useEffect } from "react";
 import CrashGame from "./components/crashGame/CrashGame";
-import Maintainence from "./Maintainence";
 
-
+  
+  
 const App = () => {
   let [game, setGame] = useState(false);
   let [showPoints, setShowPoints] = useState(true);
-
   useEffect(()=>{
      let token = localStorage.getItem("token");
      if(token)
       return;
     localStorage.setItem("token","")
+
 }, [])
   return (
     <div>
-      {/* <Header setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints} />
+      <Header setGame={setGame} game={game} setShowPoints={setShowPoints} showPoints={showPoints} />
       <Routes>
         <Route
           index
@@ -48,8 +48,8 @@ const App = () => {
           }
         />
         <Route path="/game" element={<GamePage />} />
-      </Routes> */}
-        <Maintainence/>
+      </Routes>
+
       {/* <Footer /> */}
     </div>
   );

@@ -6,6 +6,7 @@ import phantom from "../../assets/images/phantom.png";
 import metamask from "../../assets/images/metamask.png";
 import ethereum from "../../assets/images/ethereum.png";
 import { useFormik } from "formik";
+import * as _ from 'lodash'
 import {toast} from 'react-toastify'
 // import {
 //   errorSelector,
@@ -29,13 +30,15 @@ function Login({
   connectPhantomWallet,
   walletKey,
   provider,
-  disconnect
+  disconnect,
+  phantomWalletConnect,
+  metamaskWalletConnect,
 }) {
+  console.log('walletAccount: ', walletAccount);
   // const loginError = useSelector(errorSelector);
   // const { loading } = useSelector(userAuthSelector);
   const [setErrorMessage] = useState("");
   const [key, setKey] = useState("home");
-
 
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
   const loginClose = () => {
@@ -70,7 +73,6 @@ function Login({
       //   });
     },
   });
-
 
   return (
     <>
@@ -125,7 +127,8 @@ function Login({
                   <div className="_networks">
                     <Tab.Content>
                       <Tab.Pane eventKey="first">
-                        {provider ? (
+                        {/* Phantom */}
+                        {!_.isEmpty(provider) ? (
                           <>
                             <div className="_phantomCollect">{walletKey}</div>
                             <button
@@ -136,7 +139,9 @@ function Login({
                             </button>
                           </>
                         ) : (
-                          <div onClick={() => connectPhantomWallet()}>
+                          <div onClick={() => 
+                            _.isEmpty(walletAccount) ? connectPhantomWallet() : toast.error("Please disconnect Metamask first")
+                          }>
                             <img
                               src={phantom}
                               alt=""
@@ -159,8 +164,10 @@ function Login({
                             </button>
                           </>
                         ) : (
-                          <div onClick={() => toast.error("Coming Soon.")}>
-                          {/* <div onClick={() => connectMetaMask()}> */}
+                          // <div onClick={() => toast.error("Coming Soon.")}>
+                          <div onClick={() => 
+                            _.isEmpty(provider) ? connectMetaMask() : toast.error("Please disconnect Phantom first")
+                          }>
                             <img
                               src={metamask}
                               alt=""
