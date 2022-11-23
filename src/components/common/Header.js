@@ -21,11 +21,15 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   const location = useLocation();
   // offcanvas Menu State
   const dispatch = useDispatch();
-  const { CC, provider, walletKey } = useSelector((store) => store.InitReducer);
+  const { CC, ETH, SOL, provider, walletKey, walletAccount } = useSelector((store) => store.InitReducer);
+  console.log('walletKey: ', walletKey);
+  console.log('provider: ', provider);
 
   // Login State
   const [open, setOpen] = useState(false); //Login
   const [activeTab, setActiveTab] = useState("first");
+  const [phantomWalletConnect,setPhantomWalletConnect] = useState(false);
+  const [metaMaskWalletConnect, setMetaMaskWalletConnect] = useState(false);
   const loginClose = () => setOpen(false);
   const loginShow = () => {
     setOpen(true);
@@ -55,7 +59,6 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   // };
 
   //
-  const [walletAccount, setWalletAccount] = useState();
   const [ethBalance, setEthBalance] = useState();
 
   const connectMetaMask = async () => {
@@ -70,12 +73,13 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
           window.ethereum
             .request({ method: "eth_requestAccounts" })
             .then((res) => {
-              // console.log(res);
+             dispatch({
+               type: "WALLET_ACCOUNT",
+               payload: res[0],
+             });
               dispatch(
                 LoginAction({ address: res[0], chain: "ETH" }, dispatch)
               );
-              navigate("/");
-              setWalletAccount(res[0]);
               window.ethereum
                 .request({
                   method: "eth_getBalance",
@@ -86,7 +90,13 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                   setEthBalance(ethers.utils.formatEther(balance));
                 });
             });
+            
         });
+        setMetaMaskWalletConnect(true);
+        setTimeout(() => {
+          if (location.pathname == "/game_play") window.location.reload(false);
+        }, 2000);
+
     } else {
       alert("Please install Metamask to use this service!");
       // toast.error("Please install Metamask to use this service!");
@@ -118,8 +128,13 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
 
   const disconnectMetaMast = (e) => {
     // console.log("works");
+    setMetaMaskWalletConnect(false);
     e.preventDefault();
-    setWalletAccount(null);
+    dispatch({
+      type: "WALLET_ACCOUNT",
+      payload: null,
+    });
+
     localStorage.setItem("token", "");
     localStorage.setItem("gamePlay", false);
     navigate("/");
@@ -180,6 +195,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
             dispatch
           )
         );
+        setPhantomWalletConnect(true);
         setTimeout(()=> {
           if (location.pathname == "/game_play")
                window.location.reload(false);
@@ -197,6 +213,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   };
 
   const disconnect = async (e) => {
+    setPhantomWalletConnect(false);
     e.preventDefault();
     const provider = getProvider();
     // console.log("asdfasdf");
@@ -368,12 +385,17 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     </Nav.Link>
                   </>
                 )}
+                {console.log("walletAccount: ", walletAccount)}
+                {/* Ether Metamask => Actions */}
                 {walletAccount && (
                   <div className="user_icon d-flex align-items-center">
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
-                      onClick={() => openDashboard("second")}
+                      onClick={() => {
+                        setMetaMaskWalletConnect(true);
+                        openDashboard("second");
+                      }}
                       style={{ padding: "10px 20px" }}
                     >
                       Deposit
@@ -381,14 +403,26 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
-                      onClick={() => openDashboard("third")}
+                      onClick={() => {
+                        setMetaMaskWalletConnect(true);
+                        openDashboard("third")
+                      }}
                       style={{ marginRight: 100, padding: "10px 20px" }}
                     >
                       Withdraw
                     </Nav.Link>
-                    <User header="header" cc={CC} showPoints={showPoints}/>
+                    <User
+                      header="header"
+                      cc={CC}
+                      showPoints={showPoints}
+                      eth={true}
+                      ETH={ETH}
+                    />
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={() => openDashboard("first")}>
+                      <NavDropdown.Item onClick={() => {
+                        setMetaMaskWalletConnect(true);
+                        openDashboard("first")
+                        }}>
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnectMetaMast}>
@@ -397,12 +431,18 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     </NavDropdown>
                   </div>
                 )}
+                {console.log("walletKey: ", walletKey)}
+                {/* Solana Phantom -> Actions */}
                 {walletKey && (
                   <div className="user_icon d-flex align-items-center">
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
-                      onClick={() => openDashboard("second")}
+                      onClick={() => {
+                        setPhantomWalletConnect(true);
+                        openDashboard("second")
+
+                      }}
                       style={{ padding: "10px 20px" }}
                     >
                       Deposit
@@ -410,14 +450,20 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
-                      onClick={() => openDashboard("third")}
+                      onClick={() => {
+                        setPhantomWalletConnect(true);
+                        openDashboard("third")
+                      }}
                       style={{ marginRight: 100, padding: "10px 20px" }}
                     >
                       Withdraw
                     </Nav.Link>
-                    <User header="header" cc={CC} showPoints={showPoints}/>
+                    <User header="header" cc={CC} showPoints={showPoints} SOL={SOL} />
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={() => openDashboard("first")}>
+                      <NavDropdown.Item onClick={() => {
+                        setPhantomWalletConnect(true);
+                        openDashboard("first")
+                        }}>
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnect}>
@@ -445,6 +491,8 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
         disconnect={disconnect}
         provider={provider}
         walletKey={walletKey}
+        phantomWalletConnect={phantomWalletConnect}
+        metaMaskWalletConnect={metaMaskWalletConnect}
       />
 
       <DashboardModal
@@ -453,6 +501,8 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
         depositSol={transferSOL}
         sendETH={sendETH}
         activeTab={activeTab}
+        phantomWalletConnect={phantomWalletConnect}
+        metaMaskWalletConnect={metaMaskWalletConnect}
       />
     </>
   );

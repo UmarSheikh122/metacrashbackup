@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { DecryptData } from "../utils/Aes";
 
 let baseURL = process.env.REACT_APP_API_URL
 function getToken() {
@@ -32,11 +33,28 @@ export const LoginAction = (body) => {
       );
     }
     if (result.data.message == "User data is fetched") {
+      let decryptedData = DecryptData(result?.data?.data);
+      let decryptedGameToken = DecryptData(result?.data?.gametoken);
+      
+      let payload = {
+        token: result?.data?.token,
+        user: decryptedData,
+        CC: decryptedGameToken.CC / 165,
+        SOL: decryptedGameToken.SOL,
+        ETH: decryptedGameToken.ETH,
+      }
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("gamePlay", true);
+
+
+      // token: payload.token,
+      //   user: payload.data,
+      //   CC: payload.gametoken.CC / 165,
+      //   SOL: payload.gametoken.SOL,
+      //   ETH: payload.gametoken.ETH,
       dispatch({
         type: "LOGIN",
-        payload: result.data,
+        payload: payload,
       });
     }
   };
@@ -46,11 +64,22 @@ export const Signup = (body) => {
   return async (dispatch) => {
     let result = await axios.post(`${baseURL}/user/createuser`, body);
     if (result.data.message == "User wallet is registerd") {
+
+      let decryptedData = DecryptData(result?.data?.data);
+      let decryptedGameToken = DecryptData(result?.data?.gametoken);
+
+      let payload = {
+        token: result?.data?.token,
+        user: decryptedData,
+        CC: decryptedGameToken.CC / 165,
+        SOL: decryptedGameToken.SOL,
+        ETH: decryptedGameToken.ETH,
+      };
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("gamePlay", true);
       dispatch({
         type: "LOGIN",
-        payload: result.data,
+        payload: payload,
       });
     }
   };
@@ -70,6 +99,7 @@ export const DepositAction = (body, loginBody) => {
       config
       );
       dispatch(LoginAction(loginBody));  
+      toast.success("Deposit successfully.");
     } catch (error) { 
       toast.error(error.response.data.message);
     }
@@ -91,20 +121,21 @@ export const WithdrawAction = (body, loginBody, callback=null) => {
       config
     );
     console.log(result)
-    if (result.data.message == "sucess") {
+    if (result?.data?.message == "sucess") {
       dispatch(LoginAction(loginBody));
       toast.success("Withdraw completed.");
       dispatch({ type: "LOADING", payload: false });
       callback && callback();
-
     } else {
+      dispatch({ type: "LOADING", payload: false });
       toast.error("Withdraw failed.");
-    } 
+    }
+    dispatch({ type: "LOADING", payload: false });
+
   } catch (error) {
     if(error){
-      console.log(error.response.data.message)
       dispatch({ type: "LOADING", payload: false });
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     }
   }
 }}
