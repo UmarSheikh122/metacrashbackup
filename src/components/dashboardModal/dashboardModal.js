@@ -321,7 +321,6 @@ function DashboardModal({ Signupopen,
                         <div className="profile_Wrapper">
                           <div className="profile_items">
                             <div className="profile_label">
-                              {" "}
                               {metaMaskWalletConnect ? "Eth:" : "Sol:"}
                             </div>
                             <input
