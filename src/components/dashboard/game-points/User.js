@@ -18,7 +18,7 @@ function User({ cc, showPoints, eth =false, SOL, ETH }) {
           style={{ height: "40px" }}
         />
         <h4>
-          {showPoints ? eth ? `Eth: ${ETH?.toFixed(7) || "FALSE"}` : `Sol: ${SOL?.toFixed(3) || "FALSE"}` : ""}
+          {showPoints ? eth ? `Eth: ${ETH?.toFixed(7) || "FALSE"}` : `Sol: ${SOL?.toFixed(5) || "FALSE"}` : ""}
           {/* {userObj?.user?.userObj?.name} */}
           {/* some Name */}
           {/* {header==="header" && gamePoints?.points} */}

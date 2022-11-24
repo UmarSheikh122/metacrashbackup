@@ -302,7 +302,9 @@ function DashboardModal({ Signupopen,
                             <button
                               className="profile_save"
                               onClick={(e) => {
-                                metaMaskWalletConnect ? ethDeposit(e) : sendDeposit(e);
+                                metaMaskWalletConnect
+                                  ? ethDeposit(e)
+                                  : sendDeposit(e);
                               }}
                               disabled={loading}
                             >
@@ -318,7 +320,10 @@ function DashboardModal({ Signupopen,
                       <Tab.Pane eventKey="third">
                         <div className="profile_Wrapper">
                           <div className="profile_items">
-                            <div className="profile_label"> {metaMaskWalletConnect ? "Eth:" : "Sol:" }</div>
+                            <div className="profile_label">
+                              {" "}
+                              {metaMaskWalletConnect ? "Eth:" : "Sol:"}
+                            </div>
                             <input
                               type="number"
                               className="profile_username"
@@ -340,7 +345,11 @@ function DashboardModal({ Signupopen,
                           <div className="profile_items">
                             <button
                               className="profile_save"
-                              onClick={(e)=> metaMaskWalletConnect ?  ethWithdraw(e) : sendWithdraw(e)}
+                              onClick={(e) =>
+                                metaMaskWalletConnect
+                                  ? ethWithdraw(e)
+                                  : sendWithdraw(e)
+                              }
                               disabled={loadingApi}
                             >
                               {loadingApi ? (
@@ -352,6 +361,10 @@ function DashboardModal({ Signupopen,
                           </div>
                         </div>
                       </Tab.Pane>
+                      { (loadingApi || loading) && <p style={{ fontSize: "12px", marginTop: "30px", color: "black", fontStyle: "italic" }}>
+                        *Server might get busy, your patience is highly
+                        appreciated
+                      </p>}
                     </Tab.Content>
                   </div>
                 </Tab.Container>
