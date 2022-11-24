@@ -10,12 +10,13 @@ import GameCrashPage from "./pages/gameCrash/GameCrashPage";
 import { RequireAuth } from "./pages/protectedroute/RequireAuth";
 import React, { useState,useEffect } from "react";
 import CrashGame from "./components/crashGame/CrashGame";
+import { useDispatch } from "react-redux";
 
-  
-  
 const App = () => {
   let [game, setGame] = useState(false);
   let [showPoints, setShowPoints] = useState(true);
+  let dispatch = useDispatch();
+  dispatch({ type: "LOADING", payload: false });
   useEffect(()=>{
      let token = localStorage.getItem("token");
      if(token)

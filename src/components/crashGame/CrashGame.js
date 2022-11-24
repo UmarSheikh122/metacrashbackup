@@ -5,10 +5,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import { useNavigate } from "react-router";
 const CrashGame = ({ showPoints, setShowPoints }) => {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "/Build/FinalNonCompressed2.loader.js",
-    dataUrl: "/Build/FinalNonCompressed2.data",
-    frameworkUrl: "/Build/FinalNonCompressed2.framework.js",
-    codeUrl: "/Build/FinalNonCompressed2.wasm",
+    loaderUrl: "/Build/game.loader.js",
+    dataUrl: "/Build/game.data",
+    frameworkUrl: "/Build/game.framework.js",
+    codeUrl: "/Build/game.wasm",
     webglContextAttributes: {
       preserveDrawingBuffer: true,
     },
