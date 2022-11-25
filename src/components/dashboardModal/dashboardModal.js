@@ -34,7 +34,7 @@ function DashboardModal({ Signupopen,
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('user: ', user);
+ 
 
   useEffect(() => {
     if (user) {
@@ -64,7 +64,6 @@ function DashboardModal({ Signupopen,
               },
             }
           );
-        console.log('API_Response****: ', API_Response);
       if(API_Response?.status === 200) {
           let body = {
             amount: deposit * 1,
@@ -138,7 +137,6 @@ function DashboardModal({ Signupopen,
           },
         }
       );
-        console.log('API_Response****: ', API_Response);
       if(API_Response?.status === 200) 
       {
          let body = {
@@ -169,7 +167,7 @@ function DashboardModal({ Signupopen,
     } catch (error) {
       setLoading(false);
       toast.error(error?.response?.data?.message || "Authentication Failed")
-      console.log(error);
+     
     }
   };
 

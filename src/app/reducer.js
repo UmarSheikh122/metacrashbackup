@@ -11,8 +11,6 @@ let initState = {
 
 export function InitReducer(state = initState, action) {
   let { type, payload } = action;
-  console.log('type: ', type);
-  console.log('payload: ', payload);
   switch (type) {
     case "LOGIN":
       return {
