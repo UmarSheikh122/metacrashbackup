@@ -264,15 +264,10 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
       // // console.log("No prkovider found", phantomProvider);
     }
     const pubKey = await phantomProvider.publicKey;
-    console.log('pubKey: ', pubKey);
-      console.log("YES Provider");
-
-    // console.log("Public Key: ", phantomProvider);
-    // console.log("provider: ", provider);
 
     // Establishing connection
     var connection = new web3.Connection(
-      web3.clusterApiUrl(process.env.REACT_APP_SOL_NETWORK),
+      process.env.REACT_APP_SOL_QUICKNODE,
       "confirmed"
     );
     // convert sol to lamports
@@ -285,7 +280,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
 
     // Airdrop some SOL to the sender's wallet, so that it can handle the txn fee
 
-    airDropSol(connection, pubKey, lamports);
+    // airDropSol(connection, pubKey, lamports);
 
     // console.log("WORKED 1");
     let transaction = new web3.Transaction().add(
@@ -328,12 +323,20 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
 
     try {
       await connection.confirmTransaction(txid);
-      // console.log("confirm", txid);
       return { txID: txid };
-    } catch (err) {
-      // console.log("err", err);
+    } catch (ex) {
+      // console.log("ex", ex);
       return { txID: false };
     }
+
+    // try {
+    
+    //   // console.log("confirm", txid);
+    //   return { txID: txid };
+    // } catch (err) {
+    //   // console.log("err", err);
+    //   return { txID: false };
+    // }
   }
 
   const openDashboard = (tab) => {
@@ -404,7 +407,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       className="btn menu-btn"
                       onClick={() => {
                         setMetaMaskWalletConnect(true);
-                        openDashboard("third")
+                        openDashboard("third");
                       }}
                       style={{ marginRight: 100, padding: "10px 20px" }}
                     >
@@ -418,10 +421,12 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       ETH={ETH}
                     />
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={() => {
-                        setMetaMaskWalletConnect(true);
-                        openDashboard("first")
-                        }}>
+                      <NavDropdown.Item
+                        onClick={() => {
+                          setMetaMaskWalletConnect(true);
+                          openDashboard("first");
+                        }}
+                      >
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnectMetaMast}>
@@ -439,8 +444,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       className="btn menu-btn"
                       onClick={() => {
                         setPhantomWalletConnect(true);
-                        openDashboard("second")
-
+                        openDashboard("second");
                       }}
                       style={{ padding: "10px 20px" }}
                     >
@@ -451,18 +455,25 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       className="btn menu-btn"
                       onClick={() => {
                         setPhantomWalletConnect(true);
-                        openDashboard("third")
+                        openDashboard("third");
                       }}
                       style={{ marginRight: 100, padding: "10px 20px" }}
                     >
                       Withdraw
                     </Nav.Link>
-                    <User header="header" cc={CC} showPoints={showPoints} SOL={SOL} />
+                    <User
+                      header="header"
+                      cc={CC}
+                      showPoints={showPoints}
+                      SOL={SOL}
+                    />
                     <NavDropdown title="" id="basic-nav-dropdown">
-                      <NavDropdown.Item onClick={() => {
-                        setPhantomWalletConnect(true);
-                        openDashboard("first")
-                        }}>
+                      <NavDropdown.Item
+                        onClick={() => {
+                          setPhantomWalletConnect(true);
+                          openDashboard("first");
+                        }}
+                      >
                         Dashboard
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={disconnect}>
