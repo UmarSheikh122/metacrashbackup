@@ -125,7 +125,7 @@ function DashboardModal({ Signupopen,
       //   }
     try {
       if (deposit == 0) {
-        toast.error("Enter amount to withdraw");
+        toast.error("Enter amount to deposit");
         return true;
       }
 
