@@ -23,7 +23,6 @@ function App() {
       try {
         const response = await provider.connect();
         const pubKey = await provider.publicKey;
-        console.log(pubKey);
         setProvider(provider);
         setWalletKey(response.publicKey.toString());
       } catch (err) {
@@ -37,7 +36,6 @@ function App() {
     if (provider) {
       try {
         const response = await provider.disconnect();
-        console.log(response)
         setProvider(response);
         // setWalletKey(response.publicKey.toString());
       } catch (err) {
@@ -80,7 +78,6 @@ function App() {
       console.log("No provider found", phantomProvider);
     }
     const pubKey = await phantomProvider.publicKey;
-    console.log("Public Key: ", pubKey);
 
     // Establishing connection
     var connection = new web3.Connection(
@@ -118,7 +115,6 @@ function App() {
     let blockhashObj = await connection.getRecentBlockhash();
     transaction.recentBlockhash = blockhashObj.blockhash;
 
-    console.log("provider", phantomProvider);
 
     let signed = "";
     try {
@@ -136,7 +132,6 @@ function App() {
 
     try {
       await connection.confirmTransaction(txid);
-      console.log("confirm", txid);
     } catch (err) {
       console.log("err", err);
     }

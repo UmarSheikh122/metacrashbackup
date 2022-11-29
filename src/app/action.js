@@ -120,7 +120,6 @@ export const WithdrawAction = (body, loginBody, callback=null) => {
       body,
       config
     );
-    console.log(result)
     if (result?.data?.message == "sucess") {
       dispatch(LoginAction(loginBody));
       toast.success("Withdraw completed.");

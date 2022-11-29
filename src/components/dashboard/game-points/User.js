@@ -5,7 +5,7 @@ import Avatar from "../../../assets/images/Avatar.svg";
 // import { gamePointSelector } from "../../../features/game/gameSlice";
 
 function User({ cc, showPoints, eth =false, SOL, ETH }) {
-  console.log('eth: ', eth);
+  
   // const gamePoints=useSelector(gamePointSelector)
   // const userObj=useSelector(userAuthSelector)
   return (

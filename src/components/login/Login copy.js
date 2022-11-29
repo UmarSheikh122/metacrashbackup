@@ -36,7 +36,6 @@ function Login({ open, setOpen, SignupShow, message }) {
     validationSchema: loginValidation,
     onSubmit: (values) => {
       localStorage.setItem("email",values.email)
-      console.log('values.email', values.email)
       // dispatch(loginUser(values))
       //   .unwrap()
       //   .then(() => {

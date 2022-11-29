@@ -22,8 +22,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   // offcanvas Menu State
   const dispatch = useDispatch();
   const { CC, ETH, SOL, provider, walletKey, walletAccount } = useSelector((store) => store.InitReducer);
-  console.log('walletKey: ', walletKey);
-  console.log('provider: ', provider);
+
 
   // Login State
   const [open, setOpen] = useState(false); //Login

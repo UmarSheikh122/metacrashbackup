@@ -33,7 +33,6 @@ function Login({ open, setOpen, message, walletAccount }) {
       method: "eth_sendTransaction",
       params: [tx],
     });
-    console.log(result);
   };
 
   return (
