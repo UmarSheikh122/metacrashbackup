@@ -202,7 +202,6 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
         ///HELL
       } catch (err) {
         // { code: 4001, message: 'User rejected the request.' }
-        console.log("works");
         // toast.error("Please install phantom to use this service!");
         alert("Please install phantom to use this service!");
       }
@@ -387,7 +386,6 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     </Nav.Link>
                   </>
                 )}
-                {console.log("walletAccount: ", walletAccount)}
                 {/* Ether Metamask => Actions */}
                 {walletAccount && (
                   <div className="user_icon d-flex align-items-center">
@@ -435,7 +433,6 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                     </NavDropdown>
                   </div>
                 )}
-                {console.log("walletKey: ", walletKey)}
                 {/* Solana Phantom -> Actions */}
                 {walletKey && (
                   <div className="user_icon d-flex align-items-center">

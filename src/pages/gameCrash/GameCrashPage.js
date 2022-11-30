@@ -4,14 +4,27 @@ import gameimg from "../../assets/images/bgImg.jpeg";
 import play from "../../assets/images/play.svg";
 // import { useDispatch } from "react-redux";
 // import Solana from "./solana";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginAction } from "../../app/action";
+
 
 const GameCrashPage = ({ setGame, game, setShowPoints }) => {
   const [openGame, setOpenGame] = useState(game);
-  // const dispatch = useDispatch();
+  const location = useLocation();
+  let { user, loadingApi } = useSelector((store) => store.InitReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     setShowPoints(true);
+
+    if (location.pathname == "/" && user) {
+      let loginBody = {
+        address: user?.wallet,
+        chain: user?.network.toUpperCase(),
+      };
+      dispatch(LoginAction(loginBody));
+    }
   }, []);
   const gamePlayHandler = (playGame) => {
     navigate("/game_play");
