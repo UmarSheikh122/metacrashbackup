@@ -19,6 +19,7 @@ import { useNavigate } from "react-router";
 import { loginValidation } from "../../helpers/Validation";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
+import { Box } from "@mui/system";
 
 
 function Login({
@@ -165,7 +166,11 @@ function Login({
                           </>
                         ) : (
                           // <div onClick={() => toast.error("Coming Soon.")}>
-                          <div onClick={() => 
+                          <Box
+                          sx={{
+                            zIndex: 999,
+                          }}
+                           onClick={() => 
                             _.isEmpty(provider) ? connectMetaMask() : toast.error("Please disconnect Phantom first")
                           }>
                             <img
@@ -173,7 +178,7 @@ function Login({
                               alt=""
                               className="_wallet_LogoIcon"
                             />
-                          </div>
+                          </Box>
                         )}
                       </Tab.Pane>
                     </Tab.Content>
