@@ -19,9 +19,11 @@ import { useNavigate } from "react-router";
 import { loginValidation } from "../../helpers/Validation";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
-import { Box } from "@mui/system";
+import { Box, styled } from "@mui/system";
 
-
+const MetaMaskContainer = styled(Box)(({theme }) => ({
+    zIndex: 999,
+}))
 function Login({
   open,
   setOpen,
@@ -140,9 +142,15 @@ function Login({
                             </button>
                           </>
                         ) : (
-                          <div onClick={() => 
-                            _.isEmpty(walletAccount) ? connectPhantomWallet() : toast.error("Please disconnect Metamask first")
-                          }>
+                          <div
+                            onClick={() =>
+                              _.isEmpty(walletAccount)
+                                ? connectPhantomWallet()
+                                : toast.error(
+                                    "Please disconnect Metamask first"
+                                  )
+                            }
+                          >
                             <img
                               src={phantom}
                               alt=""
@@ -166,19 +174,19 @@ function Login({
                           </>
                         ) : (
                           // <div onClick={() => toast.error("Coming Soon.")}>
-                          <Box
-                          sx={{
-                            zIndex: 999,
-                          }}
-                           onClick={() => 
-                            _.isEmpty(provider) ? connectMetaMask() : toast.error("Please disconnect Phantom first")
-                          }>
+                          <MetaMaskContainer
+                            onClick={() =>
+                              _.isEmpty(provider)
+                                ? connectMetaMask()
+                                : toast.error("Please disconnect Phantom first")
+                            }
+                          >
                             <img
                               src={metamask}
                               alt=""
                               className="_wallet_LogoIcon"
                             />
-                          </Box>
+                          </MetaMaskContainer>
                         )}
                       </Tab.Pane>
                     </Tab.Content>

@@ -186,6 +186,7 @@ header .nav .dropdown .dropdown-menu .dropdown-item:hover {
 }
 .login_modal .form_field ._wallet_LogoIcon {
   height: 40px;
+  z-index: 999;
 }
 .login_modal .form_field ._wallet_logo {
   text-align: center;
