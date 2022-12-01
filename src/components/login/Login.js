@@ -23,6 +23,7 @@ import { Box, styled } from "@mui/system";
 
 const MetaMaskContainer = styled(Box)(({theme }) => ({
     zIndex: 999,
+    cursor: "pointer",
 }))
 function Login({
   open,
