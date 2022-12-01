@@ -87,14 +87,16 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                 .then((balance) => {
                   // console.log(ethers.utils.formatEther(balance));
                   setEthBalance(ethers.utils.formatEther(balance));
+                  setMetaMaskWalletConnect(true);
+                  setTimeout(() => {
+                    if (location.pathname == "/game_play")
+                      window.location.reload(false);
+                  }, 2000);
                 });
             });
             
         });
-        setMetaMaskWalletConnect(true);
-        setTimeout(() => {
-          if (location.pathname == "/game_play") window.location.reload(false);
-        }, 2000);
+        
 
     } else {
       alert("Please install Metamask to use this service!");
