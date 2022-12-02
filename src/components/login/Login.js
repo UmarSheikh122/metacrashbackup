@@ -24,6 +24,8 @@ import { Box, styled } from "@mui/system";
 const MetaMaskContainer = styled(Box)(({theme }) => ({
     zIndex: 999,
     cursor: "pointer",
+    width: "100%",
+    height: "100%",
 }))
 function Login({
   open,
@@ -186,6 +188,13 @@ function Login({
                               src={metamask}
                               alt=""
                               className="_wallet_LogoIcon"
+                              onClick={() =>
+                                _.isEmpty(provider)
+                                  ? connectMetaMask()
+                                  : toast.error(
+                                      "Please disconnect Phantom first"
+                                    )
+                              }
                             />
                           </MetaMaskContainer>
                         )}
