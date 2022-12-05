@@ -40,7 +40,6 @@ function Login({
   phantomWalletConnect,
   metamaskWalletConnect,
 }) {
-  console.log('walletAccount: ', walletAccount);
   // const loginError = useSelector(errorSelector);
   // const { loading } = useSelector(userAuthSelector);
   const [setErrorMessage] = useState("");
@@ -62,7 +61,6 @@ function Login({
     validationSchema: loginValidation,
     onSubmit: (values) => {
       localStorage.setItem("email", values.email);
-      console.log("values.email", values.email);
       // dispatch(loginUser(values))
       //   .unwrap()
       //   .then(() => {
