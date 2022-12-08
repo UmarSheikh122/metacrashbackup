@@ -26,7 +26,7 @@ const MetaMaskContainer = styled(Box)(({theme }) => ({
     cursor: "pointer",
     width: "100%",
     height: "100%",
-    background: "yellow",
+    background: "red",
 }))
 function Login({
   open,

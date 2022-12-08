@@ -61,8 +61,8 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   const [ethBalance, setEthBalance] = useState();
 
   const metaMaskWeb = () => {
-    console.log('window.ethereum: ', window.ethereum);
     if (window.ethereum && window.ethereum.isMetaMask) {
+        alert("Hello Jee")
       // console.log("MetaMask is installed!");
       window.ethereum
         .request({
