@@ -62,14 +62,14 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
 
   const metaMaskWeb = () => {
     if (window.ethereum && window.ethereum.isMetaMask) {
-        alert("Hello Jee")
+        // alert("Hello Jee")
       // console.log("MetaMask is installed!");
-      window.ethereum
-        .request({
-          method: "wallet_requestPermissions",
-          params: [{ eth_accounts: {} }],
-        })
-        .then(() => {
+      // window.ethereum
+      //   .request({
+      //     method: "wallet_requestPermissions",
+      //     // params: [{ eth_accounts: {} }],
+      //   })
+      //   .then(() => {
           window.ethereum
             .request({ method: "eth_requestAccounts" })
             .then((res) => {
@@ -95,7 +95,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                   }, 2000);
                 });
             });
-        });
+        // });
     } else {
       alert("Please install Metamask to use this service!");
       // toast.error("Please install Metamask to use this service!");
