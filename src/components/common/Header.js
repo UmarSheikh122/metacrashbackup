@@ -60,22 +60,23 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
   //
   const [ethBalance, setEthBalance] = useState();
 
-  const connectMetaMask = async () => {
-    if (typeof window.ethereum !== "undefined") {
+  const metaMaskWeb = () => {
+    if (window.ethereum && window.ethereum.isMetaMask) {
+        // alert("Hello Jee")
       // console.log("MetaMask is installed!");
-      window.ethereum
-        .request({
-          method: "wallet_requestPermissions",
-          params: [{ eth_accounts: {} }],
-        })
-        .then(() => {
+      // window.ethereum
+      //   .request({
+      //     method: "wallet_requestPermissions",
+      //     // params: [{ eth_accounts: {} }],
+      //   })
+      //   .then(() => {
           window.ethereum
             .request({ method: "eth_requestAccounts" })
             .then((res) => {
-             dispatch({
-               type: "WALLET_ACCOUNT",
-               payload: res[0],
-             });
+              dispatch({
+                type: "WALLET_ACCOUNT",
+                payload: res[0],
+              });
               dispatch(
                 LoginAction({ address: res[0], chain: "ETH" }, dispatch)
               );
@@ -94,14 +95,27 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                   }, 2000);
                 });
             });
-            
-        });
-        
-
+        // });
     } else {
       alert("Please install Metamask to use this service!");
       // toast.error("Please install Metamask to use this service!");
     }
+  }
+
+  const connectMetaMask = async (e) => {
+
+    if (window.ethereum) {
+      metaMaskWeb();
+    } else {
+      window.addEventListener("ethereum#initialized", metaMaskWeb, {
+        once: true,
+      });
+
+      // If the event is not dispatched by the end of the timeout,
+      // the user probably doesn't have MetaMask installed.
+      setTimeout(metaMaskWeb, 4000); // 3 seconds
+    }
+
 
     // console.log("Please install Metamask to use this service!");
   };
