@@ -404,7 +404,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                 )}
                 {/* Ether Metamask => Actions */}
                 {walletAccount && (
-                  <div className="user_icon d-flex align-items-center">
+                  <>
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
@@ -423,7 +423,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                         setMetaMaskWalletConnect(true);
                         openDashboard("third");
                       }}
-                      style={{ marginRight: 100, padding: "10px 20px" }}
+                      style={{ marginLeft: "15px", padding: "10px 20px" }}
                     >
                       Withdraw
                     </Nav.Link>
@@ -434,7 +434,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                       eth={true}
                       ETH={ETH}
                     />
-                    <NavDropdown title="" id="basic-nav-dropdown">
+                    <NavDropdown style={{marginTop: "10px"}} title="" id="basic-nav-dropdown">
                       <NavDropdown.Item
                         onClick={() => {
                           setMetaMaskWalletConnect(true);
@@ -447,11 +447,11 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                         Disconnect
                       </NavDropdown.Item>
                     </NavDropdown>
-                  </div>
+                  </>
                 )}
                 {/* Solana Phantom -> Actions */}
                 {walletKey && (
-                  <div className="user_icon d-flex align-items-center">
+                  <>
                     <Nav.Link
                       to=""
                       className="btn menu-btn"
@@ -493,7 +493,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                         Disconnect
                       </NavDropdown.Item>
                     </NavDropdown>
-                  </div>
+                  </>
                 )}
               </Nav>
             </div>

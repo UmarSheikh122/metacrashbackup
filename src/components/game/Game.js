@@ -4,12 +4,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Unity, useUnityContext } from "react-unity-webgl";
 const CrashGame = ({ showPoints, setShowPoints }) => {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "/Build/CRASHGAMEFINALLY.loader.js",
-    dataUrl: "/Build/CRASHGAMEFINALLY.data",
-    frameworkUrl: "/Build/CRASHGAMEFINALLY.framework.js",
-    codeUrl: "/Build/CRASHGAMEFINALLY.wasm",
+    loaderUrl: "http://localhost:5000/gameloader",
+    dataUrl: "http://localhost:5000/gamedata",
+    frameworkUrl: "http://localhost:5000/gameframework",
+    codeUrl: "http://localhost:5000/gamewasm",
   });
-
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {

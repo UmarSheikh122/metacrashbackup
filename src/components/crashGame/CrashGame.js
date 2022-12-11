@@ -5,13 +5,13 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import { useNavigate } from "react-router";
 const CrashGame = ({ showPoints, setShowPoints }) => {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "/Build/game.loader.js",
-    dataUrl: "/Build/game.data",
-    frameworkUrl: "/Build/game.framework.js",
-    codeUrl: "/Build/game.wasm",
-    webglContextAttributes: {
-      preserveDrawingBuffer: true,
-    },
+    loaderUrl: `${process.env.REACT_APP_API_URL}/gamedata/loader.js`,
+    dataUrl: `${process.env.REACT_APP_API_URL}/gamedata/data`,
+    frameworkUrl: `${process.env.REACT_APP_API_URL}/gamedata/framework.js`,
+    codeUrl: `${process.env.REACT_APP_API_URL}/gamedata/wasm`,
+    // webglContextAttributes: {
+    //   preserveDrawingBuffer: true,
+    // },
   });
   const navigate = useNavigate();
 
