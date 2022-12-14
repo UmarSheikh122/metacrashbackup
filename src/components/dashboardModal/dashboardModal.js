@@ -28,7 +28,7 @@ function DashboardModal({ Signupopen,
   const [loading, setLoading] = useState(false);
   const [deposit, setDeposit] = useState(0);
   const [withdraw, setWithdraw] = useState(0);
-  let { user, loadingApi } = useSelector((store) => store.InitReducer);
+  let { user, loadingApi, ID } = useSelector((store) => store.InitReducer);
   const [username, setUsername] = useState(user?.username);
   let dispatch = useDispatch();
   const [verifyUserOpen, setVerifyUserOpen] = useState(false);
@@ -68,6 +68,7 @@ function DashboardModal({ Signupopen,
           let body = {
             amount: deposit * 1,
             chain: user.network.toUpperCase(),
+            userid: ID
           };
           setLoading(true);
           if (!window.ethereum) {
@@ -142,6 +143,7 @@ function DashboardModal({ Signupopen,
          let body = {
            amount: deposit * 1,
            chain: user.network.toUpperCase(),
+           userid: ID,
          };
          setLoading(true);
          let result = await depositSol(body);
@@ -181,6 +183,7 @@ function DashboardModal({ Signupopen,
       points: withdraw * 1,
       chain: user.network.toUpperCase(),
       address: user?.wallet,
+      userid: ID,
     };
     let encryptedBody = EncryptData(body);
     let loginBody = {
@@ -200,6 +203,7 @@ function DashboardModal({ Signupopen,
       points: withdraw * 1,
       chain: user.network.toUpperCase(),
       address: user?.wallet,
+      userid: ID,
     };
     let encryptedBody = EncryptData(body);
     

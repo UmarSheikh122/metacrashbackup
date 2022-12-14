@@ -42,6 +42,7 @@ export const LoginAction = (body) => {
         CC: decryptedGameToken.CC / 165,
         SOL: decryptedGameToken.SOL,
         ETH: decryptedGameToken.ETH,
+        ID: decryptedData._id
       }
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("gamePlay", true);
@@ -74,6 +75,7 @@ export const Signup = (body) => {
         CC: decryptedGameToken.CC / 165,
         SOL: decryptedGameToken.SOL,
         ETH: decryptedGameToken.ETH,
+        ID: decryptedData._id,
       };
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("gamePlay", true);

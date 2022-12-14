@@ -7,6 +7,7 @@ let initState = {
   CC: false,
   SOL: 0,
   ETH: 0,
+  ID: 0,
 };
 
 export function InitReducer(state = initState, action) {
