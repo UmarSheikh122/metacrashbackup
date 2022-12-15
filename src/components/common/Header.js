@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { LoginAction } from "../../app/action";
 import * as web3 from "@solana/web3.js";
 import * as buffer from "buffer";
+import { EncryptData } from "../../utils/Aes";
 window.Buffer = buffer.Buffer;
 
 export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
@@ -70,6 +71,7 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
       //     // params: [{ eth_accounts: {} }],
       //   })
       //   .then(() => {
+        console.log("window.ethereum: ", window.ethereum.request);
           window.ethereum
             .request({ method: "eth_requestAccounts" })
             .then((res) => {
@@ -78,7 +80,10 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
                 payload: res[0],
               });
               dispatch(
-                LoginAction({ address: res[0], chain: "ETH" }, dispatch)
+                LoginAction(
+                  {encrypteddata:EncryptData({ address: res[0], chain: "ETH" })},
+                  dispatch
+                )
               );
               window.ethereum
                 .request({
@@ -206,7 +211,12 @@ export const Header = ({ setGame, game, showPoints, setShowPoints }) => {
         });
         dispatch(
           LoginAction(
-            { address: response.publicKey.toString(), chain: "Sol" },
+            {
+              encrypteddata: EncryptData({
+                address: response.publicKey.toString(),
+                chain: "Sol",
+              }),
+            },
             dispatch
           )
         );

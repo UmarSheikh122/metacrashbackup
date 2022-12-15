@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { DecryptData } from "../utils/Aes";
+import { DecryptData, EncryptData } from "../utils/Aes";
 
 let baseURL = process.env.REACT_APP_API_URL
 function getToken() {
@@ -18,17 +18,18 @@ function makeid(length) {
   }
   return result;
 }
-
 export const LoginAction = (body) => {
   return async (dispatch) => {
     let result = await axios.post(`${baseURL}/user/checkuser`, body);
     if (result.data.message == "Wallet address is not avaliable") {
+       let decryptedData = DecryptData(body);
+       console.log('decryptedData: ', decryptedData);
       dispatch(
         Signup({
-          ...body,
+          ...decryptedData,
           profile: "profile",
           username: makeid(8),
-          wallet: body.address,
+          wallet: decryptedData.address,
         })
       );
     }
@@ -62,8 +63,11 @@ export const LoginAction = (body) => {
 };
 
 export const Signup = (body) => {
+  let encryptedBody = EncryptData(body)
   return async (dispatch) => {
-    let result = await axios.post(`${baseURL}/user/createuser`, body);
+    let result = await axios.post(`${baseURL}/user/createuser`, {
+      encrypteddata:encryptedBody,
+    });
     if (result.data.message == "User wallet is registerd") {
 
       let decryptedData = DecryptData(result?.data?.data);

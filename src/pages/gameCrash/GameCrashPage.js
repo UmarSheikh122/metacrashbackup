@@ -7,6 +7,7 @@ import play from "../../assets/images/play.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../../app/action";
+import { EncryptData } from "../../utils/Aes";
 
 
 const GameCrashPage = ({ setGame, game, setShowPoints }) => {
@@ -23,7 +24,12 @@ const GameCrashPage = ({ setGame, game, setShowPoints }) => {
         address: user?.wallet,
         chain: user?.network.toUpperCase(),
       };
-      dispatch(LoginAction(loginBody));
+      let encrypteddata = EncryptData(loginBody);
+      dispatch(
+        LoginAction({
+          encrypteddata,
+        })
+      );
     }
   }, []);
   const gamePlayHandler = (playGame) => {

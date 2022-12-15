@@ -91,7 +91,10 @@ function DashboardModal({ Signupopen,
               address: user?.wallet,
               chain: user?.network.toUpperCase(),
             };
-            dispatch(DepositAction({ encrypteddata: encryptedBody}, loginBody));
+            let encryptLoginBody = EncryptData(loginBody);
+            dispatch(DepositAction({ encrypteddata: encryptedBody}, {
+              encrypteddata:encryptLoginBody
+            }));
 
             setTimeout(() => {
               if (location.pathname == "/game_play")
@@ -154,7 +157,10 @@ function DashboardModal({ Signupopen,
              address: user?.wallet,
              chain: user?.network.toUpperCase(),
            };
-           dispatch(DepositAction({ encrypteddata: encryptedBody }, loginBody));
+           let encryptedLoginBody = EncryptData(loginBody);
+           dispatch(DepositAction({ encrypteddata: encryptedBody }, {
+             encrypteddata: encryptedLoginBody
+           }));
            setTimeout(() => {
              if (location.pathname == "/game_play")
                window.location.reload(false);
@@ -190,7 +196,16 @@ function DashboardModal({ Signupopen,
       address: user?.wallet,
       chain: user?.network.toUpperCase(),
     };
-     dispatch(WithdrawAction({ encrypteddata : encryptedBody}, loginBody, refreshPage));
+    let encryptedLoginBody = EncryptData(loginBody);
+     dispatch(
+       WithdrawAction(
+         { encrypteddata: encryptedBody },
+         {
+           encrypteddata: encryptedLoginBody,
+         },
+         refreshPage
+       )
+     );
      setWithdraw(0);
   }
   const sendWithdraw = async (e) => {
@@ -211,8 +226,13 @@ function DashboardModal({ Signupopen,
       address: user?.wallet,
       chain: user?.network.toUpperCase(),
     };
+    let encryptedLoginBody = EncryptData(loginBody);
     dispatch(
-      WithdrawAction({ encrypteddata: encryptedBody }, loginBody, refreshPage)
+      WithdrawAction(
+        { encrypteddata: encryptedBody },
+        { encrypteddata: encryptedLoginBody },
+        refreshPage
+      )
     );
     setWithdraw(0);
   };
